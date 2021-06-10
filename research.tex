@@ -38,10 +38,49 @@ Note to ourselves:
 \clearpage
 
 \section{Progress and Accomplishments to date} 
-As outlined above, the primary strategic objective of the NPNEQ team during the first 18 months of the funding period was the development of a scalable and extensible DFT/TDDFT platform that is fully compatible with existing petascale and medium-term exascale hybrid CPU-GPU architectures. This objective was achieved with the recent release of the INQ platform. In parallel however, the team also pursued collaborative research efforts leading to science outcomes in the area of ultrafast materials science using existing tools and methods some of which will be incorporated into the larger INQ ecosystem of codes in future. In the following we provide a summary of both the software development and scientific research efforts within NPNEQ.   
+As outlined above, the primary strategic objective of the NPNEQ CMS center during the first 18 months of the funding period was the development of a scalable and extensible DFT/RT-TDDFT platform that is fully compatible with existing petascale and near-term exascale hybrid CPU-GPU architectures. This objective was achieved with the recent release of the INQ platform~\cite{Andrade2021}. In parallel however, the team also pursued collaborative research efforts leading to science outcomes in the area of \textit{ultrafast materials science} using alternate tools and methodologies some of which will be incorporated into the larger INQ ecosystem of codes in future. In the following we provide a summary of both the software development and scientific research efforts within NPNEQ.   
 \subsection{Code Development}
-\subsubsection{The INQ DFT/TDDFT platform} (4 pages total)
+\subsubsection{The INQ DFT/TDDFT platform} 
+With the widespread adoption of Graphical Processing Units (GPUs) as a powerful and energy efficient hardware paradigm for scientific computing over the past fifteen years and with the ongoing migration of DOE's national super-computing facilities from CPU to networked hybrid CPU-GPU architectures, it is of paramount importance within computational materials science that the community has access to electronic structure codes that are fully compatible with the emerging GPU computing landscape. The INQ platform~\cite{Andrade2021} under development by the NPNEQ team addresses this need within the context of Density Functional Theory (DFT) based approaches to materials simulation while further specializing to nonperturbative simulations of materials under nonequilibrum conditions. During the first 18 months of this funding period, the NPNEQ center  accomplished the design and development tasks necessary to deliver a modular and extensible GPU-accelerated software solution for DFT/TDDFT led by LLNL PIs \textbf{Andrade} and \textbf{Correa}. In the following we outline the unique design features of INQ as well as it's current capabilities:
+
 \paragraph{General features and design}
+\begin{figure}[h]
+    \centering
+    \includegraphics{figures/Water}
+    \caption{
+        The ionization of liquid water and formation of solvated \(\mathrm{H_3O^+}\), \(\mathrm{OH\cdot}\) radical and electron species is followed by the local thermalization involving energy exchange between the electronic and ionic degrees of freedom.
+    }
+    \label{fig:water}
+\end{figure}
+This is why our main objective when designing and
+developing inq is that it can be easily modified and improved, while providing consistent results and behavior.
+At the same time, it should offer all the features expected
+of a modern electronic structure code and the highest
+performance possible. We combine several elements to
+achieve our objective, that we briefly discuss next and
+that are expanded in the following sections.
+First, inq does not follow the traditional code interface based on input files. Instead, inq is a library where
+the user input is a computer program. We explain our
+approach in section III.
+Second, inq has a highly modular structure where the
+code is divided into several components with well defined
+tasks. In this way, the different components can be developed and tested independently. They can also be shared
+with other codes, to avoid duplication of work and enable
+collaborative development. In fact, we use third party
+components when they are available, and when possible
+contribute to their development (as in the case of libxc).
+This is discussed in detail in section IV.
+A third aspect is the use of modern programming in
+C++ , explained in section V, that allows for a high level
+of abstraction while retaining the efficiency of a low level
+language. The result is a code that is simple to write
+and read, and that resembles as much as possible the underlying mathematics. Details like memory management
+and parallelization are hidden as much as possible and
+most programmers do not need to worry about them. A
+particularly advantageous application of modern C++ is
+to facilitate GPU programming. We developed a simple
+and general model to write GPU code that we describe
+in section VI.
 1-1.5 pages including figures
 \paragraph{GPU-MPI functionality and scaling}
 1-1.5 pages including figures
