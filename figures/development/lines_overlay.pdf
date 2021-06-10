@@ -9,7 +9,7 @@
 <link crossorigin="" href="snowplow.trx.gitlab.net" rel="preconnect">
 
 <meta content="IE=edge" http-equiv="X-UA-Compatible">
-<script nonce="tF0q+ZRl1Y/fMmexO3Vpmw==">
+<script nonce="C1GIcbguJOnl4TpapW8bAA==">
 //<![CDATA[
 var gl = window.gl || {};
 gl.startup_calls = {"":{}};
@@ -30,7 +30,7 @@ if (gl.startup_graphql_calls && window.fetch) {
 
   const opts = {
     method: "POST",
-    headers: { "Content-Type": "application/json", 'X-CSRF-Token': "nsAzODSbUm1TDupSk1gRDLPqObmLT8mHb7KPhwTz40Lu0tCdL/XARsRw//z7WUC9FcCKSM52cy/Z7kihlQaU4A==" },
+    headers: { "Content-Type": "application/json", 'X-CSRF-Token': "PsADp+X50Bin8XV79/xoQxf8K3U4GZ9nvAxuxdB5173ffEcvrOghlHX2nR6IMglNybhTeBoWZOy8FiDQD70i4Q==" },
   };
 
   gl.startup_graphql_calls = gl.startup_graphql_calls.map(call => ({
@@ -76,7 +76,7 @@ if (gl.startup_graphql_calls && window.fetch) {
 
 
 <link rel="stylesheet" media="print" crossorigin="anonymous" href="https://assets.gitlab-static.net/assets/highlight/themes/white-3dc16a1a591e4b4ebf0a3b185f2a92790dada139f107cde1bcb5fa03a563b0c6.css" />
-<script nonce="tF0q+ZRl1Y/fMmexO3Vpmw==">
+<script nonce="C1GIcbguJOnl4TpapW8bAA==">
 //<![CDATA[
 document.querySelectorAll('link[media="print"]').forEach(linkTag => {
   linkTag.setAttribute('data-startupcss', 'loading');
@@ -87,33 +87,33 @@ document.querySelectorAll('link[media="print"]').forEach(linkTag => {
 //]]>
 </script>
 
-<script nonce="tF0q+ZRl1Y/fMmexO3Vpmw==">
+<script nonce="C1GIcbguJOnl4TpapW8bAA==">
 //<![CDATA[
 window.gon={};gon.features={"refactorBlobViewer":false,"consolidatedEditButton":false};
 //]]>
 </script>
 
-<script src="https://assets.gitlab-static.net/assets/webpack/runtime.74082ca4.bundle.js" defer="defer" nonce="tF0q+ZRl1Y/fMmexO3Vpmw=="></script>
-<script src="https://assets.gitlab-static.net/assets/webpack/main.18c3bda3.chunk.js" defer="defer" nonce="tF0q+ZRl1Y/fMmexO3Vpmw=="></script>
-<script src="https://assets.gitlab-static.net/assets/webpack/sentry.cccca380.chunk.js" defer="defer" nonce="tF0q+ZRl1Y/fMmexO3Vpmw=="></script>
+<script src="https://assets.gitlab-static.net/assets/webpack/runtime.70d1fbb6.bundle.js" defer="defer" nonce="C1GIcbguJOnl4TpapW8bAA=="></script>
+<script src="https://assets.gitlab-static.net/assets/webpack/main.09cf1874.chunk.js" defer="defer" nonce="C1GIcbguJOnl4TpapW8bAA=="></script>
+<script src="https://assets.gitlab-static.net/assets/webpack/sentry.cccca380.chunk.js" defer="defer" nonce="C1GIcbguJOnl4TpapW8bAA=="></script>
 
 
-<script src="https://assets.gitlab-static.net/assets/webpack/graphql.0a3cd4b9.chunk.js" defer="defer" nonce="tF0q+ZRl1Y/fMmexO3Vpmw=="></script>
-<script src="https://assets.gitlab-static.net/assets/webpack/commons-pages.admin-pages.admin.abuse_reports-pages.admin.application_settings-pages.admin.applicati-f8d18192.a2320dda.chunk.js" defer="defer" nonce="tF0q+ZRl1Y/fMmexO3Vpmw=="></script>
-<script src="https://assets.gitlab-static.net/assets/webpack/commons-globalSearch-pages.admin.abuse_reports-pages.admin.application_settings.ci_cd-pages.admin.gr-f196c612.69ea2ffd.chunk.js" defer="defer" nonce="tF0q+ZRl1Y/fMmexO3Vpmw=="></script>
-<script src="https://assets.gitlab-static.net/assets/webpack/shortcutsBundle.fbd4c308.chunk.js" defer="defer" nonce="tF0q+ZRl1Y/fMmexO3Vpmw=="></script>
-<script src="https://assets.gitlab-static.net/assets/webpack/commons-pages.groups.boards-pages.groups.details-pages.groups.epic_boards-pages.groups.show-pages.gr-b80e3f95.baf5f68b.chunk.js" defer="defer" nonce="tF0q+ZRl1Y/fMmexO3Vpmw=="></script>
-<script src="https://assets.gitlab-static.net/assets/webpack/commons-pages.groups.epics.index-pages.groups.epics.new-pages.groups.epics.show-pages.groups.iterati-7a97ebd5.e250c86d.chunk.js" defer="defer" nonce="tF0q+ZRl1Y/fMmexO3Vpmw=="></script>
-<script src="https://assets.gitlab-static.net/assets/webpack/commons-pages.projects.blame.show-pages.projects.blob.edit-pages.projects.blob.new-pages.projects.bl-d63c8603.8b867411.chunk.js" defer="defer" nonce="tF0q+ZRl1Y/fMmexO3Vpmw=="></script>
-<script src="https://assets.gitlab-static.net/assets/webpack/commons-pages.projects.blame.show-pages.projects.blob.edit-pages.projects.blob.new-pages.projects.bl-c6edf1dd.632eae53.chunk.js" defer="defer" nonce="tF0q+ZRl1Y/fMmexO3Vpmw=="></script>
-<script src="https://assets.gitlab-static.net/assets/webpack/commons-pages.projects.blob.show-pages.projects.show-pages.projects.snippets.show-pages.projects.tre-c684fcf6.d985f671.chunk.js" defer="defer" nonce="tF0q+ZRl1Y/fMmexO3Vpmw=="></script>
-<script src="https://assets.gitlab-static.net/assets/webpack/commons-pages.projects.blob.show-pages.projects.commits.show-pages.projects.compare.show.f2db6384.chunk.js" defer="defer" nonce="tF0q+ZRl1Y/fMmexO3Vpmw=="></script>
-<script src="https://assets.gitlab-static.net/assets/webpack/commons-pages.projects.blob.show-pages.projects.show-pages.projects.tree.show.f1d27586.chunk.js" defer="defer" nonce="tF0q+ZRl1Y/fMmexO3Vpmw=="></script>
-<script src="https://assets.gitlab-static.net/assets/webpack/pages.projects.blob.show.b489c3db.chunk.js" defer="defer" nonce="tF0q+ZRl1Y/fMmexO3Vpmw=="></script>
+<script src="https://assets.gitlab-static.net/assets/webpack/graphql.0a3cd4b9.chunk.js" defer="defer" nonce="C1GIcbguJOnl4TpapW8bAA=="></script>
+<script src="https://assets.gitlab-static.net/assets/webpack/commons-pages.admin-pages.admin.abuse_reports-pages.admin.application_settings-pages.admin.applicati-f8d18192.a2320dda.chunk.js" defer="defer" nonce="C1GIcbguJOnl4TpapW8bAA=="></script>
+<script src="https://assets.gitlab-static.net/assets/webpack/commons-globalSearch-pages.admin.abuse_reports-pages.admin.application_settings.ci_cd-pages.admin.gr-f196c612.69ea2ffd.chunk.js" defer="defer" nonce="C1GIcbguJOnl4TpapW8bAA=="></script>
+<script src="https://assets.gitlab-static.net/assets/webpack/shortcutsBundle.fbd4c308.chunk.js" defer="defer" nonce="C1GIcbguJOnl4TpapW8bAA=="></script>
+<script src="https://assets.gitlab-static.net/assets/webpack/commons-pages.groups.boards-pages.groups.details-pages.groups.epic_boards-pages.groups.show-pages.gr-b80e3f95.baf5f68b.chunk.js" defer="defer" nonce="C1GIcbguJOnl4TpapW8bAA=="></script>
+<script src="https://assets.gitlab-static.net/assets/webpack/commons-pages.groups.epics.index-pages.groups.epics.new-pages.groups.epics.show-pages.groups.iterati-7a97ebd5.e250c86d.chunk.js" defer="defer" nonce="C1GIcbguJOnl4TpapW8bAA=="></script>
+<script src="https://assets.gitlab-static.net/assets/webpack/commons-pages.projects.blame.show-pages.projects.blob.edit-pages.projects.blob.new-pages.projects.bl-d63c8603.8b867411.chunk.js" defer="defer" nonce="C1GIcbguJOnl4TpapW8bAA=="></script>
+<script src="https://assets.gitlab-static.net/assets/webpack/commons-pages.projects.blame.show-pages.projects.blob.edit-pages.projects.blob.new-pages.projects.bl-c6edf1dd.632eae53.chunk.js" defer="defer" nonce="C1GIcbguJOnl4TpapW8bAA=="></script>
+<script src="https://assets.gitlab-static.net/assets/webpack/commons-pages.projects.blob.show-pages.projects.show-pages.projects.snippets.show-pages.projects.tre-c684fcf6.d985f671.chunk.js" defer="defer" nonce="C1GIcbguJOnl4TpapW8bAA=="></script>
+<script src="https://assets.gitlab-static.net/assets/webpack/commons-pages.projects.blob.show-pages.projects.commits.show-pages.projects.compare.show.f2db6384.chunk.js" defer="defer" nonce="C1GIcbguJOnl4TpapW8bAA=="></script>
+<script src="https://assets.gitlab-static.net/assets/webpack/commons-pages.projects.blob.show-pages.projects.show-pages.projects.tree.show.f1d27586.chunk.js" defer="defer" nonce="C1GIcbguJOnl4TpapW8bAA=="></script>
+<script src="https://assets.gitlab-static.net/assets/webpack/pages.projects.blob.show.b489c3db.chunk.js" defer="defer" nonce="C1GIcbguJOnl4TpapW8bAA=="></script>
 
 <meta name="csrf-param" content="authenticity_token" />
-<meta name="csrf-token" content="hvZU7btv0KX4ihwYzCsseMGeddYFt+hbEmrzWqEYcyX25LdIoAFCjm/0CbakKn3JZ7TGJ0COUvOkNjR8MO0Ehw==" />
-<meta name="csp-nonce" content="tF0q+ZRl1Y/fMmexO3Vpmw==" />
+<meta name="csrf-token" content="MCQjTwZ9xL3ZammeRIcfSKNclAeLw8iiyZrWVmVZZMLRmGfHT2w1MQttgfs7SX5GfRjsCqnMMynJgJhDup2Rng==" />
+<meta name="csp-nonce" content="C1GIcbguJOnl4TpapW8bAA==" />
 <meta name="action-cable-url" content="/-/cable" />
 <meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport">
 <meta content="#474D57" name="theme-color">
@@ -128,7 +128,7 @@ window.gon={};gon.features={"refactorBlobViewer":false,"consolidatedEditButton":
 
 
 
-<script nonce="tF0q+ZRl1Y/fMmexO3Vpmw==">
+<script nonce="C1GIcbguJOnl4TpapW8bAA==">
 //<![CDATA[
 ;(function(p,l,o,w,i,n,g){if(!p[i]){p.GlobalSnowplowNamespace=p.GlobalSnowplowNamespace||[];
 p.GlobalSnowplowNamespace.push(i);p[i]=function(){(p[i].q=p[i].q||[]).push(arguments)
@@ -147,7 +147,7 @@ gl.snowplowStandardContext = {"schema":"iglu:com.gitlab/gitlab_standard/jsonsche
 
 <body class="ui-indigo tab-width-8 gl-browser-generic gl-platform-other" data-find-file="/npneq/inq-development-paper/-/find_file/master" data-group="npneq" data-namespace-id="5322025" data-page="projects:blob:show" data-page-type-id="master/figures/lines_of_code/lines_overlay.pdf" data-project="inq-development-paper" data-project-id="22223516">
 
-<script nonce="tF0q+ZRl1Y/fMmexO3Vpmw==">
+<script nonce="C1GIcbguJOnl4TpapW8bAA==">
 //<![CDATA[
 gl = window.gl || {};
 gl.client = {"isGeneric":true,"isOther":true};
@@ -805,7 +805,7 @@ Download (22.3 KB)
 </button>
 </div>
 <div class="modal-body">
-<form class="js-quick-submit js-upload-blob-form" data-method="put" action="/npneq/inq-development-paper/-/update/master/figures/lines_of_code/lines_overlay.pdf" accept-charset="UTF-8" method="post"><input type="hidden" name="_method" value="put" /><input type="hidden" name="authenticity_token" value="SmtWuvi2fUxQeST/lxuDX4VYPg1nHtnxNU3CE93qhX06ebUf49jvZ8cHMVH/GtLuI3KN/CInY1mDEQU1TB/y3w==" /><div class="dropzone">
+<form class="js-quick-submit js-upload-blob-form" data-method="put" action="/npneq/inq-development-paper/-/update/master/figures/lines_of_code/lines_overlay.pdf" accept-charset="UTF-8" method="post"><input type="hidden" name="_method" value="put" /><input type="hidden" name="authenticity_token" value="/lam1IBlV1fG0Lm4sbdBETCe8dtBb1AQ0GzBoSfSn7kf6uJcyXSm2xTXUd3OeSAf7tqJ1mNgq5vQdo+0+BZq5Q==" /><div class="dropzone">
 <div class="dropzone-previews blob-upload-dropzone-previews">
 <p class="dz-message light">
 Attach a file by drag &amp; drop or <a class="markdown-selector" href="#">click to upload</a>
@@ -815,11 +815,11 @@ Attach a file by drag &amp; drop or <a class="markdown-selector" href="#">click 
 <br>
 <div class="dropzone-alerts gl-alert gl-alert-danger gl-mb-5 data" style="display:none"></div>
 <div class="form-group row commit_message-group">
-<label class="col-form-label col-sm-2" for="commit_message-458277005803901091b6dd7aa7b2ea6b">Commit message
+<label class="col-form-label col-sm-2" for="commit_message-c406dabfd3db29e4f90f696fcf5767d8">Commit message
 </label><div class="col-sm-10">
 <div class="commit-message-container">
 <div class="max-width-marker"></div>
-<textarea name="commit_message" id="commit_message-458277005803901091b6dd7aa7b2ea6b" class="form-control gl-form-input js-commit-message" placeholder="Replace lines_overlay.pdf" data-qa-selector="commit_message_field" required="required" rows="3">
+<textarea name="commit_message" id="commit_message-c406dabfd3db29e4f90f696fcf5767d8" class="form-control gl-form-input js-commit-message" placeholder="Replace lines_overlay.pdf" data-qa-selector="commit_message_field" required="required" rows="3">
 Replace lines_overlay.pdf</textarea>
 </div>
 </div>
@@ -853,7 +853,7 @@ A new branch will be created in your fork and a new merge request will be starte
 
 
 
-<script nonce="tF0q+ZRl1Y/fMmexO3Vpmw==">
+<script nonce="C1GIcbguJOnl4TpapW8bAA==">
 //<![CDATA[
 if ('loading' in HTMLImageElement.prototype) {
   document.querySelectorAll('img.lazy').forEach(img => {
