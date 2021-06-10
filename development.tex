@@ -16,17 +16,21 @@
 
 }
 
+Grand Challenge 
+
+Outreach summer school director, two students.
+
+QMCPACK library
+
+As requested by the program, one of the central objectives of the first half of the NPNEQ center was the delivery of a performant GPU DFT code to tackle non-perturbative and non-equilibrium phenomena studied by the center.
+INQ is a new implementation of density functional theory (DFT) and time-dependent DFT (TDDFT) written from scratch to work on graphical processing units (GPUs).  
+Besides GPU support,INQ makes use of modern code design features and takes advantage of newly available hardware.
+By designing the code around algorithms, rather than against specific implementations and numerical  libraries, we aim to provide a concise and modular code.
+The result is a fairly complete DFT/TDDFT implementation in roughly 12,000 lines of open-source C++code representing a modular platform for community-driven application development on emerging high-performance computing architectures.
+
 Talk about libraries used by QMCPACK also.
 
-\begin{figure}
-    \centering
-    \includegraphics{figures/placeholder.jpg}%{development/lines_overlay.pdf}
-    \caption{
-        Inq source-code lines \emph{vs.} time since the start of the project.  
-        Note that test and code are developed side-by-side, and the amount of lines of code is comparable.  We     find testing fundamental for continuous development and maintenance of the code. 
-        The dip near 11/2019 reflects the removal of internal exchange and corrections (XC) functional computation, which was replaced by the external library libxc. 
-        The relatively low line count (12,000) for a fully functional DFT code is achieved by delegating functionality to libxc (shown), Multi and B.MPI3 libraries.}
-    \label{fig:lines_overlay}
-\end{figure}
+
+Outreach activities include the organization of a symposium at the 2021 Molecular Foundry Annual User meeting (August 19-20, 2021). The symposium, entitled “Non-Equilibrium and Non-Perturbative Experimental and Theoretical Methods for Dynamical Science”, aims to survey recent progress in manipulation, measurement, and simulation of non-equilibrium dynamics. Alongside the symposium organization, the INQ team will also be presenting a tutorial-style introduction to the INQ code during the Molecular Foundry User Meeting, as a way to introduce the code to the electronic structure community. 
 
 \clearpage
