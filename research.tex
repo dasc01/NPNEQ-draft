@@ -38,55 +38,37 @@ Note to ourselves:
 \clearpage
 
 \section{Progress and Accomplishments to date} 
-As outlined above, the primary strategic objective of the NPNEQ CMS center during the first 18 months of the funding period was the development of a scalable and extensible DFT/RT-TDDFT platform that is fully compatible with existing petascale and near-term exascale hybrid CPU-GPU architectures. This objective was achieved with the recent release of \textsc{INQ}~\cite{Andrade2021}. In parallel however, the team also pursued multi-institutional collaborative research efforts leading to science outcomes in the area of \textit{ultrafast materials science} using alternate tools and methodologies some of which will be incorporated into the larger INQ ecosystem of codes in future. In the following we provide a summary of both the software development and scientific research efforts within NPNEQ.   
+As outlined above, the primary strategic objective of the NPNEQ CMS center during the first 18 months of the funding period was the development of a \textbf{portable}, \textbf{scalable} and \textbf{reliable} DFT/RT-TDDFT platform that is fully compatible with existing petascale and near-term exascale hybrid CPU-GPU architectures. This objective was achieved with the recent release of \textsc{INQ}~\cite{Andrade2021}. In parallel however, the team also pursued multi-institutional collaborative research efforts leading to science outcomes in the area of \textit{ultrafast materials science} using alternate tools and methodologies some of which will be incorporated into the larger INQ ecosystem of codes in future. In the following we provide a summary of both the software development and scientific research efforts within NPNEQ.   
 \subsection{Code Development}
 \subsubsection{The INQ DFT/TDDFT platform} 
 With the widespread adoption of Graphical Processing Units (GPUs) as a powerful and energy efficient hardware paradigm for scientific computing over the past fifteen years and with the ongoing migration of DOE's national super-computing facilities from CPU to networked hybrid CPU-GPU architectures, it is of paramount importance within computational materials science that the community has access to electronic structure codes that are fully compatible with the emerging GPU computing landscape. The INQ platform~\cite{Andrade2021} under development by the NPNEQ team addresses this need within the context of Density Functional Theory (DFT) based approaches to materials simulation while further specializing to nonperturbative simulations of materials under nonequilibrum conditions. During the first 18 months of this funding period, the NPNEQ center  accomplished the design and development tasks necessary to deliver a modular and extensible GPU-accelerated software solution for DFT/TDDFT led by LLNL PIs \textbf{Andrade} and \textbf{Correa}. In the following we outline the unique design features of INQ as well as it's current capabilities:
 
 \paragraph{General features and design}
-The design philosophy of INQ differs in many important respects from established Fortran/C based DFT/TDDFT codes developed in previous decades to run on CPUs: Unlike the CPU computing model that matured decades ago, GPU computing is still rapidly evolving with different hardware designs  competing for primacy in the super-computing space and vendors making significant low-level updates and modifications on a regular basis. \textsc{INQ} is therefore designed from the outset to be easily modified and improved on top of evolving hardware, while providing consistent results and behavior independent of specific vendor platforms. \textsc{INQ} achieves this goal through abstraction by implementing a clear separation between different classes of software components namely: application (DFT/TDDFT) specific code, infrastructure (data-structures, basis-set, boundary conditions etc) code and numerical library (blas, FFTs etc) code. 
+The design philosophy of INQ differs in many important respects from established Fortran/C based DFT/TDDFT codes developed in previous decades to run on CPUs: Unlike the CPU computing model that matured decades ago, GPU computing is still rapidly evolving with different hardware designs  competing for primacy in the super-computing space and vendors making significant low-level updates and modifications on a regular basis. \textsc{INQ} is therefore designed from the outset to be easily modified and improved on top of evolving hardware, while providing consistent results and behavior independent of specific vendor platforms. \textsc{INQ} achieves this goal through abstraction enabled by modern C++ programming, by implementing a clear separation between different classes of software components namely: application (DFT/TDDFT) specific code, infrastructure (basis-set, boundary conditions, data-structures etc) code and low-level numerical library (blas, FFTs etc) code. 
 \newline 
 \newline
-As shown if Fig~\ref{fig:inq_design}(a), in traditional DFT/TDDFT programs, the different software components are rather tightly coupled into monolithic software units and the programmer may encounter all classes of code within a given subroutine or function. \textsc{INQ} on the other hand implements a hierarchical structure with an application (DFT/TDDFT) code layer that sits on top of an infrastructure library layer which gracefully handles all hardware-dependent decisions. A programmer working with the DFT/TDDFT layer then encounters a much simplified programming interface that  syntactically resembles the relevant physics equations~(see ref.~\cite{Andrade2021}) and is shielded from lower level representation-specific and hardware-specific details. This hierarchical design is critical for developing code that is hardware portable while simultaneously reducing the learning curve for new developers from the DFT community to be able to quickly add functionality in the application layer.
+As shown if Fig~\ref{fig:inq_design}(a), in traditional DFT/TDDFT programs, the different software components are rather tightly coupled into monolithic software units and the programmer may encounter all classes of code within a given subroutine or function. \textsc{INQ} on the other hand implements a hierarchical structure with an application (DFT/TDDFT) code layer that sits on top of an infrastructure library layer which gracefully handles all hardware-dependent decisions. A programmer working with the DFT/TDDFT layer then encounters a much simplified programming interface that  syntactically resembles the relevant physics equations~(see ref.~\cite{Andrade2021}) and is shielded from lower level representation-specific and hardware-specific details. This hierarchical design is critical for developing code that is hardware portable while simultaneously reducing the learning curve for new developers from the DFT community to be able to quickly add functionality in the application layer. Note that while interpreted scripting languages such as Python, MATLAB etc can provide a similar type of abstraction, there is a performance cost associated with them which is not incurred by \textsc{INQ} as it relies on compiled C++.   
 \begin{figure}[h]
     \centering
     \includegraphics[width=1.0\linewidth]{figures/INQ_design_features.pdf}
     \caption{
-        Key design features of the INQ framework. (a) INQ was built from the outset as a library that can operate on both CPU and GPU hardware, (b) At roughly 12,000 lines of code, INQ is extremely lightweight compared to other DFT/TDDFT codes offering comparable functionality, (c) INQ brings together a highly modular hierarchy of libraries ensuring maximum adaptability with respect to future hardware and software changes.    
+        Key design features of the INQ framework. (a) INQ was built from the outset as a library that can operate on both CPU and GPU hardware, (b) At roughly 12,000 lines of code, INQ is extremely lightweight compared to other DFT/TDDFT codes offering comparable functionality. Adopting GPU-compatible libxc substantially reduced the size of INQ's internal codebase.(c) INQ brings together a highly modular hierarchy of libraries ensuring maximum adaptability with respect to future hardware and software changes.    
     }
     \label{fig:inq_design}
 \end{figure}
 \newline
-The hardware portability of \textsc{INQ} is practically achieved through a highly modular design of its library layer which brings together a number of different libraries that were developed both at LLNL and by the extended DFT community. Some of the key libraries used in INQ the relationships  between them  
+The hardware portability of \textsc{INQ} is achieved in practice through a highly modular design of its library layer which brings together a number of different components that were developed both at LLNL and by the extended DFT community. Some of the key libraries used in INQ are:
+\begin{itemize}
+    \item \textbf{MULTI:} Developed by PI \textbf{Correa} at LLNL, \textsc{MULTI} provides multidimensional array access on both CPU and GPU memory models while abstracting operations over arrays without compromising maximum performance. It also provides the interface between \textsc{INQ} and vendor provided linear algebra, FFT and C++ standard libraries.
+    \item \textbf{B.MPI3:} B-MPI3 is a C++ library wrapper for version 3.1 of the Message Passing Interface (MPI) standard that simplifies the its utilization while maintaining a similar level of performance as the more cumbersome native MPI C-language interface. B.MPI3 was developed by PI \textbf{Correa} at LLNL.
+    \item \textbf{PSEUDOPOD:} \textsc{PSEUDOPOD} is a CPU+GPU compatible library that handles pseudopotential (PP) parsing, filtering and other auxiliary tasks while supporting many popular PP formats as well standardized PP sets such as Pseudodojo and SG15. \textsc{PSEUDOPOD} developed by PI \textbf{Andrade} at LLNL, moves PP handling from the application layer to the library layer of INQ.
+    \item \textbf{LIBXC:} Libxc is a standalone library of exchange and correlation (XC) functionals initially developed by M. Marques. As part of the development on \textsc{INQ}, PI \textbf{Andrade} implemented a GPU extension of libxc that relies on cuda ‘unified memory’ to store its internal data structures. \textsc{INQ} therefore has the ability to evaluate XC functionals on GPUs.  
+\end{itemize}
+Figure~\ref{fig:inq_design}(c) shows the interaction between these \textsc{INQ} modules and lower-level vendor provided libraries.  The modularization of \textsc{INQ}'s library layer affords several advantages: For instance, different components can be developed and tested independently as well as shared with other codes, to avoid duplication of work and enable collaborative development. Following changes to low-level vendor provided libraries, only a small portion of the code needs to be updated in a way that is transparent to end users and application layer developers. Furthermore, by creating libraries and offloading tasks to them whenever possible, the code base internal to \textsc{INQ} can be kept relatively small as shown in figure~\ref{fig:inq_design}(b). 
 
-At the same time, it should offer all the features expected
-of a modern electronic structure code and the highest
-performance possible. We combine several elements to
-achieve our objective, that we briefly discuss next and
-that are expanded in the following sections.
-First, inq does not follow the traditional code interface based on input files. Instead, inq is a library where
-the user input is a computer program. We explain our
-approach in section III.
-Second, inq has a highly modular structure where the
-code is divided into several components with well defined
-tasks. In this way, the different components can be developed and tested independently. They can also be shared
-with other codes, to avoid duplication of work and enable
-collaborative development. In fact, we use third party
-components when they are available, and when possible
-contribute to their development (as in the case of libxc).
-This is discussed in detail in section IV.
-A third aspect is the use of modern programming in
-C++ , explained in section V, that allows for a high level
-of abstraction while retaining the efficiency of a low level
-language. The result is a code that is simple to write
-and read, and that resembles as much as possible the underlying mathematics. Details like memory management
-and parallelization are hidden as much as possible and
-most programmers do not need to worry about them. A
-particularly advantageous application of modern C++ is
-to facilitate GPU programming. We developed a simple
-and general model to write GPU code that we describe
-in section VI.
-1-1.5 pages including figures
+Finally, in order to ensure reliability within a collaborative development environment,  \textsc{INQ} adopts a test-driven development (TDD) approach in line with modern software development best practices. Therefore the \textsc{INQ} codebase consists of both unit and functional tests that are run regularly within an automated continuous delivery platform like gitlab. This ensures that only code modifications that do not lead to errors anywhere in the codebase are accepted.
+
+The result is a fully functional yet light-weight DFT/TDDFT code that is portable across hardware platforms, offers optimal scaling on distributed hybrid CPU-GPU platforms and affords reliable numerical accuracy. We discuss performance and validation tests of \textsc{INQ} carried out to date.   
 \paragraph{GPU-MPI functionality and scaling}
 1-1.5 pages including figures
 \paragraph{Validation of results}
@@ -112,7 +94,7 @@ Mention stopping, hook to Future work
 Careful model building based on first-principles calculations combined with large-scale model simulations is a promising route to produce interesting insights into the dynamic behavior of  
 materials driven far from equilibrium. We have developed an atomic-orbital-based
 tight-binding code for simulations on large time and
-length scales to supplement the capabilities of inq. These models treat
+length scales to supplement the capabilities of \textsc{inq}. These models treat
 charge, spin, orbital, and atomic degrees of freedom explicitly, capturing the quantum effects of 
 charge carriers, the non-collinear spin dynamics, and the
 cooperative lattice vibrations. 
@@ -138,7 +120,7 @@ anisotropies.
 \subsection{Collaborative science}
 \textcolor{red}{Descriptions of type-A projects.}
 
-\subsubsection{Role of nonequilibrium spin-phonon coupling in enhancing bulk photovoltaic effect }
+\subsubsection{Role of nonequilibrium spin-phonon coupling in enhancing bulk photovoltaic effect }\label{sec:BPVE}
 During the project period, our work on the materials system of \(\mathrm{Pr_xCa_{1-x}MnO_3}\) has resulted in the discovery of a new way to enhance the bulk photovoltaic effect by optically induced phase transitions. 
 These results, currently under review, are reported in the preprint Ref.~\cite{Rajpurohit2021}. 
 Our study provides a unified picture of the photocurrent generation and its evolution through real-time simulations, and will have a significant impact in field of the bulk photovoltaic effect (BPVE) where understanding, predicting, and ultimately controlling the photovoltaic behavior remains a challenge.
@@ -167,9 +149,9 @@ High defect tolerance has been considered as a main reason for the long charge c
 high photoluminescence quantum yield in bulk lead halide perovskites (LHPs). On the other hand,
 surface defects play a critical role in determining charge carrier dynamics and optical properties,
 especially for LHP nanocrystals and quantum dots. Revealing the nature of surface defects and
-developing strategy for their effective passivation are thus of strong interest.  {\bf Tan} and {\bf Ogitsu}, together with collaborators at UCSC, have used first-principles calculations to reveal that interstitial and antisite defects in a prototypical LHP, CsPbBr$_3$, can have lower formation energy when they form at the surface instead of bulk while simultaneously creating deep trap states within the bandgap.  We show how to choose molecular ligands to passivating these defects, eliminating trap states in favor of shallow states, which enhances photoluminescence. (See Fig~\ref{fig:defect}) This work has implications for  the field of LHPs, especially LHP devices where interfacial chemistry plays an important role in the optoelectronic properties and stability.
+developing strategy for their effective passivation are thus of strong interest.  {\bf Tan} and {\bf Ogitsu}, together with collaborators at UCSC~\cite{Smart2021}, have used first-principles calculations to reveal that interstitial and antisite defects in a prototypical LHP, CsPbBr$_3$, can have lower formation energy when they form at the surface instead of bulk while simultaneously creating deep trap states within the bandgap.  We show how to choose molecular ligands to passivating these defects, eliminating trap states in favor of shallow states, which enhances photoluminescence. (See Fig~\ref{fig:defect}) This work has implications for  the field of LHPs, especially LHP devices where interfacial chemistry plays an important role in the optoelectronic properties and stability.
 
-This work forms the basis for planned real-time simulations of lossy processes in the LHPs, such as non-radiative recombination processes and dephasing. Even though the natural time scales of these processes are longer than   
+This work forms the basis for planned real-time simulations of lossy processes at these defects in the LHPs, such as non-radiative recombination processes and dephasing, which are of fundamental interest for in optoelectronic applications. Even though typical RT-TDDFT simulations are shorter than the natural time scales of these processes, it has been demonstrated that their rates can still be extracted, by using a cumulant expansion approach~\cite{Qiao2020}. Scalability of the \textsc{inq} code will enable these calculations in challenging systems such as LHP surfaces defects, which contain a large number of electrons.     
 
 
 \begin{figure}[h]
@@ -193,7 +175,7 @@ This work forms the basis for planned real-time simulations of lossy processes i
 \end{figure}
 
 Photo-excitation induced structural dynamics in liquid water represents a paradigmatic case of excited state electron-ion dynamics in the condensed phase. 
-In particular, the radiolysis of liquid water and its aftermath is a process of fundamental importance in a variety of technological contexts~\cite{Garrett2005} such energy harvesting, biochemistry, biomedicine, corrosion mitigatio, etc. 
+In particular, the radiolysis of liquid water and its aftermath is a process of fundamental importance in a variety of technological contexts~\cite{Garrett2005} such energy harvesting, biochemistry, biomedicine, corrosion mitigation, etc. 
 Therefore, investigating the interplay between the electronic and ionic degrees of freedom in photo-ionized liquid water on the femto-picosecond timescales relevant to the creation and transformation of short-lived reaction intermediates~\cite{Loh2020} is of interest to both experiment and theory.
 Within the current funding period, NPNEQ researchers at SLAC collaborated with experimental teams working at SLAC's MeV-UED instrument to uncover the structural finger-prints of hydronium cation-hydroxyl radical pairs on femtosecond timescales in strong-field ionized liquid water (See Fig~\ref{fig:water}). 
 In this study we deployed velocity-gauge real-time TDDFT as implemented within the \textsc{SALMON} code~\cite{salmon} to estimate the photo-ionization fraction in liquid water for experimentally relevant laser pulse parameters. 
@@ -202,10 +184,9 @@ In the near future we plan to further extend our studies in this prototypical wa
 \subsubsection{WTe2 collaborations}
 
 \subsubsection{Charge density wave melting in 2D materials}
-In this experimental collaboration, we perform the first ultrafast investigation of TaTe$_2$, which exhibits unique charge density wave (CDW) and lattice structural order characterised by a transition upon cooling from stripe-like trimer chains into a (3x3) superstructure of trimer clusters. 
+In this experimental collaboration~\cite{Siddiqui2020}, we perform the first ultrafast investigation of TaTe$_2$, which exhibits unique charge density wave (CDW) and lattice structural order characterised by a transition upon cooling from stripe-like trimer chains into a (3x3) superstructure of trimer clusters. 
 
-We develop computational models of the ultrafast photoinduced dynamics in TaTe2. These models will incorporate the electronic and atomic structure as well as their strong interactions to calculate the atomic trajectories. Density-functional calculations indicate that the initial quench is triggered by Ta trimer bonding to nonbonding transitions that destabilises the clusters, unlike CDW melting in other TaX$_2$ compounds.
-Utilising MeV-scale ultrafast electron diffraction, the TaTe$_2$ structural dynamics is resolved following intense pulsed laser excitation at 1.2 eV. We observe a rapid 1.4 ps melting of the low-temperature ordered state, followed by recovery of the clusters via thermalisation into a hot superstructure persisting for extended times.  Our work paves the way for further exploration and ultimately directed manipulation of the trimer superstructure for novel applications.
+We develop computational models of the ultrafast photoinduced dynamics in TaTe$_2$, incorporating  electronic and atomic structure and their strong interactions to calculate the atomic trajectories. Density-functional calculations indicate that the initial quench is triggered by Ta trimer bonding to nonbonding transitions that destabilises the clusters, unlike CDW melting in other TaX$_2$ compounds. These predictions were verified by experimental work utilising MeV-scale ultrafast electron diffraction to resolve structural dynamics following intense pulsed laser excitation. We observe a rapid 1.4 ps melting of the low-temperature ordered state, followed by recovery of the clusters via thermalisation into a hot superstructure persisting for extended times.  Our work paves the way for further exploration and ultimately directed manipulation of the trimer superstructure for novel applications.
 
 
 
@@ -219,15 +200,11 @@ Utilising MeV-scale ultrafast electron diffraction, the TaTe$_2$ structural dyna
 \paragraph{Beyond Ehrenfest dynamics} 
 Mention: Electron-phonon development from stopping power.  Figure.
 
-\paragraph{Interfacing INQ with TB codes}
+\paragraph{Interfacing \textsc{inq} with Tight-Binding codes}
 
-We plan to use INQ in combination with our tight-binding dynamics code (Section.~\ref{sec:tight-binding}) for parameter extraction and for identification of the relevant degrees of freedom to be retained in these downfolded models.  
-The system-specific parameters for the tight-binding model and
-spin Hamiltonian will be extracted from INQ code. The phonon band
-structure calculations performed with INQ will be used to include
-the important phonon modes in the model. 
+We plan to use \textsc{inq} in combination with our tight-binding dynamics code (Section.~\ref{sec:tight-binding}) for parameter extraction and for identification of the relevant degrees of freedom to be retained in these downfolded models. Having a well-defined interface for these tasks will accelerate projects of the sort described in Sections~\ref{sec:BPVE},~\ref{sec:tight-binding}. Dynamical Wannierization along TDDFT trajectories will provide Hamiltonian matrix elements for the construction of these models, generalizing an approach previously taken for Wannierization along classical MD trajectories~\cite{Abramovitch2021}. These script-heavy workflows will be greatly simplified in \textsc{inq}, which will include a language-level interface to the \textsc{Wannier90} library~\cite{Mostofi2008}. Other types of script-heavy workflows, especially those with high throughput aspects, will benefit similarly from the modularity of \textsc{inq}, which makes scripting and post-processing obsolete in favor of programmability within the single-language \textsc{inq} framework.
 
-Mention: Modularity of INQ makes scripting obsolete because of high throughput capability. Workflow improvements in INQ.
+Scientifically, having the \textsc{inq} code coupled to local-basis models will enable the exploration of research questions relating to the dynamics of localization. The appropriate parameterization of tight-binding models suitable for describing non-adiabatic dynamics remains an open question, and similar questions remain in the propagation of local orbitals, particularly close to metallicity~\cite{Yost2019}. With these tools, we will study how orbital localization arises from decoherence, finite-temperature effects, and scattering processes.  
 
 \subsection{Science Applications}
 \subsubsection{Spin dynamics in layered anti-ferromagnets}
