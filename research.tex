@@ -145,10 +145,10 @@ These models treat charge, spin, orbital, and atomic degrees of freedom explicit
 With the current tight-binding code, structural and electronic optimization can be performed to study ground state properties. 
 For simulating relaxation dynamics of excited solids, the code supports Ehrenfest dynamics and Car-Parrinello dynamics. 
 The effect of linearly polarized light field is implemented via the Peierls substitution method. 
-Our recently published work on manganites~\cite{Sangeeta2020a} demonstrates the potential of such tight-binding models to study non-equilibrium dynamics in functional quantum materials. 
+Our recently published work on manganites~\cite{Rajpurohit2021} demonstrates the potential of such tight-binding models to study non-equilibrium dynamics in functional quantum materials. 
 
 During the project period, the code has been extended to simulate multilayer oxide structures, layered transition metal dichalcogenides (TMDC), and circularly polarized excitations. 
-This has led to multiple scientific outputs and insights both through intra-NPNEQ ~\textcolor{red}{~\textbf{PROVIDE CITATION}} and external collaborations~\textcolor{red}{~\textbf{PROVIDE CITATION}} as outlined in the next subsection. 
+This has led to multiple scientific outputs and insights both through intra-NPNEQ~\cite{Rajpurohit2021} and external collaborations~\cite{Siddiqui2020} as outlined in the next subsection. 
 Work is in progress to implement further extensions such as spin-orbit couplings, van der Waals (vdW) interactions, and Nose-Hover thermostat to incorporate finite-temperature effects. 
 Additionally, the inclusion of external magnetic fields will allow for the simulation of magnetic excitations and magnon dispersion. 
 Solving for these spin-waves will be done in large unit cells using an effective spin Hamiltonian consisting of Zeeman effects, exchange interactions and magnetic
@@ -286,7 +286,7 @@ With these tools, we will study how orbital localization arises from decoherence
 
 Several ongoing projects involving close collaboration between experimental efforts and theory from this team are in progress.
 
-\subsubsection{Spin dynamics in layered anti-ferromagnets}
+\subsubsection{Spin dynamics in layered antiferromagnets}\label{sec:2dafm}
 
 In collaboration with {\bf Tan} and {\bf Pemmaraju}, {\bf Lindenberg} has been investigating the ultrafast dynamical response of two-dimensional antiferromagnetic materials.
 In antiferromagnets, electron exchange interactions result in antiparallel or non-collinear microscopic spin correlations with negligible macroscopic magnetization.
@@ -329,21 +329,10 @@ This Hamiltonian will be solved for large magnetic supercell to produce the spin
 Development of this model will be accelerated by the team's recent experience with similar models for 2D TMDCs and manganites~\cite{Siddiqui2020, Rajpurohit2020}. 
 As a by-product of this work, the \textsc{inq} code will contain an interface that will facilitate user extraction of parameters for model simulations.
 
-\subsubsection{Demagnetization in optically excited Perovskites Nickelates}
-
-The rare earth perovskite nikelates RNiO$_3$ are host to
-Another example is the melting of antiferromagentic order in photoexcited nickelates within a few picoseconds~\cite{Caviglia2013}, suggested to be directly linked to the melting of charge order.
-The process of charge order melting due to the instantaneous redistribution of charge carriers during photoexcitation process is a target for real-time TDDFT simulation.\cite{Giovannetti2009,Hampel2017,Beyerlein2018}
-
-{\textcolor{red}RNiO3}
-
-Unique structural and electronic transitions that can be tuned from \(600\) to \(130~\mathrm{K}\) as a function of the rare earth ion R.
-High temperature: metallic phase with orthorhombic structure
-low temperature: insullating phase with monoclinic
-Ni3+ ions 3d7 t2g6 eg1
-This structural transition involves splitting of Ni into two inequivalent sites, surprisingly no jahn-teller distortion.
-photoinduced phase transitions : photoinduce metastable spiral spin structure \(0.5~\mathrm{ps}\). insulator metal transition in optically excitated nickelates
-heterostructure - theoretical prediction of superconductivity, exchange bias effects RMnO3/RNiO3. modulation of orbital occupation due to strain and interface effects, modelling of energy transfer across interface during a nd after photoexcitation
+\subsubsection{Demagnetization in optically excited perovskite nickelates}
+The perovskite nickelates RNiO$_3$ are host to a number of unique structural, electronic and magnetic transitions~\cite{Giovannetti2009,Hampel2017,Beyerlein2018}. The melting of the low-temperature antiferromagentic order in photoexcited nickelates~\cite{Caviglia2013} is suggested to be
+directly linked to the melting of charge order, but the details and control of this coupling are not well understood. The metal-insulator transition involves structural changes that split Ni$^{3+}$ ions to two inequivalent sites, which surprisingly do not involve any Jahn-Teller distortion, unlike typical charge-transfer transitions in other oxide perovskites. In future work, we plan to address these unresolved questions using a combination of real-time TDDFT simulation ({\bf Tan}) and time domain THz emission spectroscopy together with Ultrafast Electron Diffraction ({\bf Lindenberg}). Similar to the approach to be taken in Section~\ref{sec:2dafm}, this combination of experimental techniques will measure antiferromagnetic dynamics together with correlated structural changes. Simulation efforts will target the process of charge order melting due to the instantaneous redistribution of charge carriers during photoexcitation process, and the creation of  metastable spiral spin structures over 0.5 ps. 
+\textsc{inq} scaling will let us extend these calculations to heterostructures, which are of interest because of possible superconductivity in these structures. These simulations will investigate exchange bias effects at the  RMnO$_3$/RNiO$_3$ interface, the modulation of orbital occupation due to strain and interface effects, and energy transfer across the interface during and after photoexcitation.
 
 \subsubsection{Nonlinear nonequilibrium response in topological materials}
 
