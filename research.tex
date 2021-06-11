@@ -67,7 +67,7 @@ Note that while interpreted scripting languages such as Python, MATLAB, etc. can
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=1.0\linewidth]{figures/INQ_design_features.pdf}
+	\includegraphics[width=0.8\linewidth]{figures/INQ_design_features.pdf}
 	\caption{
 		Key design features of the INQ framework.
 		(a) INQ was built from the outset as a library that can operate on both CPU and GPU hardware,
@@ -127,7 +127,7 @@ Unfortunately this last case has a non-negligible overhead in the communication 
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=0.66\linewidth]{figures/scaling/strong}
+	\includegraphics[width=0.5\linewidth]{figures/scaling/strong}
 	\caption{
 		Strong scaling plot: wall time per TDDFT simulation step for Aluminum FCC supercell.
 		These simulations are run in LLNL's Lassen supercomputer (4 NVIDIA Tesla P100 Pascal GPUs per compute node).
@@ -231,7 +231,7 @@ This phenomenon is highly non-perturbative, and lies outside the perturbative pa
 The maximum photoresponsivity obtained is almost an order of magnitude higher than that reported for other transition metal oxides such as \(\mathrm{BiFeO_3}\) and \(\mathrm{BaTiO_3}\).
 
 \begin{figure}[ht]
-	\centering\includegraphics[width=1.0\linewidth]{figures/photocurrent_old}
+	\centering\includegraphics[width=0.8\linewidth]{figures/photocurrent_old}
 	\caption{
 		Simulated photocurrent of \(\mathrm{Pr_xCa_{1-x}MnO_3}\), as a function of light intensity and time after excitation. 
 		Rapid enhancement of photocurrent (left) in indicative of a nonperturbative process beyond the frameworks of previously studied shift and ballistic current theories.
@@ -260,14 +260,23 @@ Scalability of the \textsc{inq} code will enable these calculations in challengi
 
 \begin{figure}[h]
 	\centering
-	\includegraphics{figures/defect_passivation}
+	\fbox{\includegraphics[width=0.45\textwidth]{figures/defect_passivation}}
+	\fbox{\includegraphics[width=0.45\textwidth]{figures/stopping_eph}}
 	\caption{
 		Schematic atomic structure of defects at the surface of \(\mathrm{CsPbBr_3}\), which are susceptible to non-radiative recombination when unpassivated (left), but become less detrimental to radiative recombination when passivated (right).
 	}
 	\label{fig:defect}
 \end{figure}
+% \begin{figure}
+% \centering
 
-\textcolor{red}{Descriptions of selected type-B projects.}
+% \caption{
+% 	Electron-phonon coupling seen as an electronic-stopping power process. 
+% 	The analogy is that, while a fast intruding projectile is stopped by the host electrons (channel or off-channel densities), an oscillating atom from the host is subject to the friction of the electrons present around the atomic site.
+% }
+% \label{fig:stopping_eph}
+% \end{figure}
+% \textcolor{red}{Descriptions of selected type-B projects.}
 
 \subsubsection{Ultrafast dynamics in strong-field ionized liquid water} 
 
@@ -283,7 +292,7 @@ Scalability of the \textsc{inq} code will enable these calculations in challengi
 Photo-excitation induced structural dynamics in liquid water represents a paradigmatic case of excited state electron-ion dynamics in the condensed phase. 
 In particular, the radiolysis of liquid water and its aftermath is a process of fundamental importance in a variety of technological contexts~\cite{Garrett2005} such as energy harvesting, biochemistry, biomedicine, corrosion mitigation, etc. 
 Therefore, investigating the interplay between the electronic and ionic degrees of freedom in photo-ionized liquid water on the femto-picosecond timescales relevant to the creation and transformation of short-lived reaction intermediates~\cite{Loh2020} is of interest to both experiment and theory.
-Within the current funding period, NPNEQ researchers at SLAC collaborated with experimental teams working at SLAC's MeV-UED instrument to uncover the structural finger-prints of hydronium cation-hydroxyl radical pairs on femtosecond timescales in strong-field ionized liquid water (See Fig.~\ref{fig:water}). 
+Within the current funding period, NPNEQ researchers at SLAC collaborated with experimental teams working at SLAC's MeV-UED instrument to uncover the structural finger-prints of hydronium cation-hydroxyl radical pairs on femtosecond timescales in strong-field ionized liquid water. 
 In this study, we deployed velocity-gauge real-time TDDFT as implemented within the \textsc{salmon} code~\cite{salmon} to estimate the photo-ionization fraction in liquid water for experimentally relevant laser pulse parameters. 
 Our simulations revealed a nonlinear multi-step photo-ionization process in liquid water subjected to high-intensity near-infrared radiation and our predicted excited electron energy distribution subsequently informed classical models of thermalization based on molecular dynamics. 
 A manuscript summarizing the findings of our experiment-theory collaboration is currently under review at the journal \emph{Science}.
@@ -346,15 +355,7 @@ These dissipative terms can be calculated on-the-fly by launching \emph{tangenti
 The dissipative contributions can then be added to the Newton's equation of motion by terms in the form of \(M \ddot{\vec{R}} = \vec{F}_\text{BO} - \beta\dot{\vec{R}} + \vec{\xi}\), where is \(\beta\) and \(\xi\) are a friction tensor and correlated noise respectively~\cite{Tamm2018}.
 This formulation is being tested by not only calculating a certain \emph{limit} of electronic stopping power (\(\beta\)) of the same atoms that form the crystal (or a liquid) but also by calculating the corresponding excited-state force fluctuations (\(\xi\)) via TDDFT (Fig.~\ref{fig:stopping_eph}).
 
-\begin{figure}
-\centering
-\includegraphics[width=0.66\columnwidth]{figures/stopping_eph}
-\caption{
-	Electron-phonon coupling seen as an electronic-stopping power process. 
-	The analogy is that, while a fast intruding projectile is stopped by the host electrons (channel or off-channel densities), an oscillating atom from the host is subject to the friction of the electrons present around the atomic site.
-}
-\label{fig:stopping_eph}
-\end{figure}
+
 
 \paragraph{Interfacing \textsc{inq} with Tight-Binding codes}\label{sec:future-tb}
 
@@ -395,7 +396,7 @@ This work opens up new possibilities for controlling the properties of antiferro
 Ongoing work additionally involves upcoming experiments at the SLAC National Accelerator Laboratory Ultrafast Electron Diffraction facility where we will in parallel investigate the correlated structural dynamics under similar photoexcitation conditions.
 
 \begin{figure}[ht]
-	\centering\includegraphics[width=1.0\linewidth]{figures/NiPS3}
+	\centering\includegraphics[width=0.8\linewidth]{figures/NiPS3}
 	\caption{
 		(left)  Measured THz electric field waveform emitted from \(\mathrm{NiPS_3}\) antiferromagnetic sample under femtosecond \(400~\mathrm{nm}\) excitation.
 		(right) Peak THz emission amplitude as a function of temperature, showing strong enhancement at the Neel temperature (\(155~\mathrm{K}\)), showing direct sensitivity to time-dependent magnetization.
