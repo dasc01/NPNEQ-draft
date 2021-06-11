@@ -137,21 +137,14 @@ Unfortunately this last case has a non-negligible overhead in the communication 
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=0.66\linewidth]{figures/scaling/gpu_vs_cpu}
+	\includegraphics[width=0.45\linewidth]{figures/scaling/gpu_vs_cpu}
+	\includegraphics[width=0.45\linewidth]{figures/scaling/weak}
 	\caption{
-		Comparison of INQ GPU and CPU implementations TDDFT timings for Aluminum FCC supercell
+		(left)  Comparison of INQ GPU and CPU implementations TDDFT timings for Aluminum FCC supercell
+		(right) Best timing achieved for variable system size (\emph{Weak} scaling).
 		These simulations are run in LLNL's Lassen supercomputer (4 NVIDIA Tesla P100 Pascal GPUs per compute node).
 	}
 	\label{fig:scaling_gpu_vs_cpu}
-\end{figure}
-
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=0.66\linewidth]{figures/scaling/weak}
-	\caption{
-		Best timing achieved for variable system size (\emph{Weak} scaling).
-		These simulations are run in LLNL's Lassen supercomputer (4 NVIDIA Tesla P100 Pascal GPUs per compute node).
-	}
 	\label{fig:scaling_weak}
 \end{figure}
 
