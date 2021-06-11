@@ -161,17 +161,6 @@ This mean our parallelization only covers one degree of freedom (the states) and
 That's why we see the time per iteration in the weak scaling going up in Fig.~\ref{fig:scaling_weak}.
 
 Despite the incomplete parallelization, iterator times are below a second per step even with a few hundred atoms, which is very competitive among alternative codes.
-
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=1.0\linewidth]{figures/scaling/weak}
-	\caption{
-		Best timing achieved for variable system size (\emph{Weak} scaling).
-		These simulations are run in LLNL's Lassen supercomputer (4 NVIDIA Tesla P100 Pascal GPUs per compute node).
-	}
-	\label{fig:inq_results}
-\end{figure}
-
 Overall, we developed a code that performs extremely competitive in modern clusters with GPUs.
 
 \paragraph{Validation of results:}
