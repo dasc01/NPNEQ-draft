@@ -108,6 +108,27 @@ In the following, we discuss performance and validation tests of these capabilit
 \paragraph{GPU-MPI functionality and scaling:}
 1-1.5 pages including figures
 
+\textsc{Inq} is the first implementation of density functional theory (DFT) and time-dependent DFT (TDDFT) that is written from scratch to work on graphical processing units (GPUs).
+
+\textsc{Inq} achieves distributed memory parallelism (parallelism between several nodes) by using the Message Passing Interface (\textsc{MPI}) infrastructure, including extensions that allow direct GPU to GPU data transfer.
+
+In \textsc{inq} we directly call \textsc{MPI} over data in GPU memory.
+Ideally, most modern \textsc{MPI} implementations are GPU-aware and can recognize the GPU memory space and they can directly access data.
+In the best scenario they can also communicate the data to and from GPU memory without passing through main memory, but this is not always the case.
+For non-GPU-aware implementations, \emph{managed memory} residing on the GPU would be automatically copied to main memory before \textsc{MPI} calls.
+Unfortunately this last case has a non-negligible overhead in the communication cos
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=1.0\linewidth]{figures/scaling/strong}
+	\caption{
+		Strong scaling plot: wall time per simulation step.
+		These simulations are run in LLNL's Lassen supercomputer (4 NVIDIA Tesla P100 Pascal GPUs per compute node).
+	}
+	\label{fig:inq_results}
+\end{figure}
+
+
 \paragraph{Validation of results:}
 \begin{figure}[h]
 	\centering
