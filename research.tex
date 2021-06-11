@@ -41,7 +41,7 @@ Note to ourselves:
 
 As outlined above, the primary strategic objective of the NPNEQ CMS center during the first 18 months of the funding period was the development of a \textbf{portable}, \textbf{extensible}, \textbf{scalable} and \textbf{reliable} DFT/RT-TDDFT framework that is fully compatible with existing petascale and near-term exascale \textbf{hybrid CPU-GPU} architectures.
 This objective was achieved with the recent release of \textsc{inq}~\cite{Andrade2021}. 
-In parallel however, the team also pursued multi-institutional collaborative research efforts leading to science outcomes in the area of \emph{ultrafast materials science} using alternate tools and methodologies, some of which will be incorporated into the larger INQ ecosystem of codes in future. 
+In parallel however, the team also pursued multi-institutional collaborative research efforts leading to science outcomes in the area of \emph{ultrafast materials science} using alternate tools and methodologies, some of which will be incorporated into the larger INQ ecosystem of codes in the future. 
 In the following we provide a summary of both the software development and scientific research efforts within NPNEQ.
 
 \subsection{Code Development}
@@ -117,7 +117,7 @@ Unfortunately we could not find one that was directly suitable for the operation
 So we decided to design our code using the \textsc{cuda} C++ extensions with a thin layer of abstraction on top, that allows us to make most of the code independent of the GPU backend.
 
 \textsc{Inq} achieves distributed memory parallelism (parallelism between several nodes) by using the Message Passing Interface (\textsc{MPI}) infrastructure.
-For simplicity, it uses one MPI task per GPU, for example in LLNL's lassen each of the 4 GPU in a node is controlled by 1 MPI task.
+For simplicity, it uses one MPI task per GPU, for example in LLNL's Lassen each of the 4 GPU in a node is controlled by 1 MPI task.
 
 In \textsc{inq} we directly call \textsc{MPI} over data in GPU memory.
 Ideally, most modern \textsc{MPI} implementations are GPU-aware and can recognize the GPU memory space and they can directly access data.
@@ -137,21 +137,14 @@ Unfortunately this last case has a non-negligible overhead in the communication 
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=0.66\linewidth]{figures/scaling/gpu_vs_cpu}
+	\includegraphics[width=0.45\linewidth]{figures/scaling/gpu_vs_cpu}
+	\includegraphics[width=0.45\linewidth]{figures/scaling/weak}
 	\caption{
-		Comparison of INQ GPU and CPU implementations TDDFT timings for Aluminum FCC supercell
+		(left)  Comparison of INQ GPU and CPU implementations TDDFT timings for Aluminum FCC supercell
+		(right) Best timing achieved for variable system size (\emph{Weak} scaling).
 		These simulations are run in LLNL's Lassen supercomputer (4 NVIDIA Tesla P100 Pascal GPUs per compute node).
 	}
 	\label{fig:scaling_gpu_vs_cpu}
-\end{figure}
-
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=0.66\linewidth]{figures/scaling/weak}
-	\caption{
-		Best timing achieved for variable system size (\emph{Weak} scaling).
-		These simulations are run in LLNL's Lassen supercomputer (4 NVIDIA Tesla P100 Pascal GPUs per compute node).
-	}
 	\label{fig:scaling_weak}
 \end{figure}
 
