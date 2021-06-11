@@ -108,15 +108,22 @@ In the following, we discuss performance and validation tests of these capabilit
 \paragraph{GPU-MPI functionality and scaling:}
 1-1.5 pages including figures
 
-\textsc{Inq} is the first implementation of density functional theory (DFT) and time-dependent DFT (TDDFT) that is written from scratch to work on graphical processing units (GPUs).
+\textsc{Inq} is the first implementation of density functional theory (DFT) and time-dependent DFT (TDDFT) that is written \emph{from scratch} to work on graphical processing units (GPUs).
+It proven quite challenging to adapt an existing code to run on the GPU, as extensive modifications to the whole code are needed.
+For this reason we decided to start a new code, designed from the ground up to run on GPUs (but that also runs on CPUs). 
 
-\textsc{Inq} achieves distributed memory parallelism (parallelism between several nodes) by using the Message Passing Interface (\textsc{MPI}) infrastructure, including extensions that allow direct GPU to GPU data transfer.
+We studied the different available platforms for high level GPU programming like \textsc{raja}~\cite{Beckingsale2019}, \textsc{Kokkos}~\cite{CarterEdwards2014}, \textsc{OpenMP}~\cite{Lee2010} and \textsc{SyCL}~\cite{Alpay2020}.
+Unfortunately we could not find one that was directly suitable for the operations needed for DFT/TDDFT and that was mature enough at the moment we started the project (mid-2019).
+So we decided to design our code using the \textsc{cuda} C++ extensions with a thin layer of abstraction on top, that allows us to make most of the code independent of the GPU backend.
+
+\textsc{Inq} achieves distributed memory parallelism (parallelism between several nodes) by using the Message Passing Interface (\textsc{MPI}) infrastructure.
+For simplicity, it uses one MPI task per GPU, for example in LLNL's lassen each of the 4 GPU in a node is controlled by 1 MPI task.
 
 In \textsc{inq} we directly call \textsc{MPI} over data in GPU memory.
 Ideally, most modern \textsc{MPI} implementations are GPU-aware and can recognize the GPU memory space and they can directly access data.
 In the best scenario they can also communicate the data to and from GPU memory without passing through main memory, but this is not always the case.
 For non-GPU-aware implementations, \emph{managed memory} residing on the GPU would be automatically copied to main memory before \textsc{MPI} calls.
-Unfortunately this last case has a non-negligible overhead in the communication cos
+Unfortunately this last case has a non-negligible overhead in the communication cost.
 
 \begin{figure}[h]
 	\centering
@@ -125,9 +132,47 @@ Unfortunately this last case has a non-negligible overhead in the communication 
 		Strong scaling plot: wall time per simulation step.
 		These simulations are run in LLNL's Lassen supercomputer (4 NVIDIA Tesla P100 Pascal GPUs per compute node).
 	}
+	\label{fig:scaling_strong}
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=1.0\linewidth]{figures/scaling/gpu_vs_cpu}
+	\caption{
+		Comparison of INQ GPU and CPU implementations.
+		These simulations are run in LLNL's Lassen supercomputer (4 NVIDIA Tesla P100 Pascal GPUs per compute node).
+	}
+	\label{fig:scaling_gpu_vs_cpu}
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=1.0\linewidth]{figures/scaling/weak}
+	\caption{
+		Best timing achieved for variable system size (\emph{Weak} scaling).
+		These simulations are run in LLNL's Lassen supercomputer (4 NVIDIA Tesla P100 Pascal GPUs per compute node).
+	}
+	\label{fig:scaling_weak}
+\end{figure}
+
+The main limitation to scalability is the lack of a parallel FFT library for GPUs. 
+Our own basic implementation doesn't scale very well. 
+This mean our parallelization only covers one degree of freedom (the states) and not the space (domains). 
+That's why we see the time per iteration in the weak scaling going up in Fig.~\ref{fig:scaling_weak}.
+
+Despite the incomplete parallelization, iterator times are below a second per step even with a few hundred atoms, which is very competitive among alternative codes.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=1.0\linewidth]{figures/scaling/weak}
+	\caption{
+		Best timing achieved for variable system size (\emph{Weak} scaling).
+		These simulations are run in LLNL's Lassen supercomputer (4 NVIDIA Tesla P100 Pascal GPUs per compute node).
+	}
 	\label{fig:inq_results}
 \end{figure}
 
+Overall, we developed a code that performs extremely competitive in modern clusters with GPUs.
 
 \paragraph{Validation of results:}
 \begin{figure}[h]
