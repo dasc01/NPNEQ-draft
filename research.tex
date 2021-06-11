@@ -78,7 +78,6 @@ Note that while interpreted scripting languages such as Python, MATLAB, etc. can
 	\label{fig:inq_design}
 \end{figure}
 
-\newline
 The hardware portability of \textsc{inq} is achieved in practice through a highly modular design of its library layer which brings together a number of different components that were developed both at LLNL and by the extended DFT community. 
 
 Some of the key libraries used in INQ are:
@@ -127,8 +126,12 @@ Results for ground state total energies and real-time TDDFT optical response are
 \end{figure}
 
 For a new scientific code it is fundamental to produce results that are consistent with other approaches and codes. 
-As \textsc{inq} follows a test-driven development approach, \textsc{inq}'s codebase is continuously tested and validated at multiple levels against analytical results or benchmark data obtained from other established codes such as Quantum Espresso. We recently carried out higher level end-to-end tests of \textsc{INQ} as a part of the software release validating \textsc{INQ} results against corresponding
-quantities obtained from established plane-wave and realspace grid codes: \textsc{Quantum Espresso} (QE) and \textsc{Octopus}. For this purpose we chose observables such as molecular bond lengths and crystal lattice parameters based on total-energy minimization, as well as linear optical response from real-time propagation as the relevant quantities to be compared. For details on calculation parameters please refer to ref.~\cite{Andrade2021}. As apparent from the comparisons shown in Figure~\ref{fig:inq_results}, we find that absolute total energies from \textsc{INQ} are within 0.3 mHartree/atom of the QE reference. Furthermore, the optical response of a gas phase water molecule as obtained from \textsc{INQ} is seen to be in excellent agreement with the corresponding result from \textsc{Octopus} in the time domain (Fig~\ref{fig:inq_results}(c)) and therefore excitation frequencies in the optical absorption spectrum are also found to match closely across a wide energy range. 
+As \textsc{inq} follows a test-driven development approach, \textsc{inq}'s codebase is continuously tested and validated at multiple levels against analytical results or benchmark data obtained from other established codes such as \textsc{Quantum Espresso}. 
+We recently carried out higher level end-to-end tests of \textsc{inq} as a part of the software release validating \textsc{inq} results against corresponding quantities obtained from established plane-wave and realspace grid codes: \textsc{Quantum Espresso} (QE) and \textsc{Octopus}. 
+For this purpose we chose observables such as molecular bond lengths and crystal lattice parameters based on total-energy minimization, as well as linear optical response from real-time propagation as the relevant quantities to be compared. 
+For details on calculation parameters please refer to Ref.~\cite{Andrade2021}. 
+As apparent from the comparisons shown in Figure~\ref{fig:inq_results}, we find that absolute total energies from \textsc{inq} are within \(0.3~\mathrm{mHartree/atom}\) of the QE reference. 
+Furthermore, the optical response of a gas phase water molecule as obtained from \textsc{inq} is seen to be in excellent agreement with the corresponding result from \textsc{octopus} in the time domain (Fig.~\ref{fig:inq_results}(c)) and therefore excitation frequ1encies in the optical absorption spectrum are also found to match closely across a wide energy range. 
 
 \textbf{Mention stopping, hook to Future work}
 
