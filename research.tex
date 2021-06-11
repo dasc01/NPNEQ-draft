@@ -127,9 +127,9 @@ Unfortunately this last case has a non-negligible overhead in the communication 
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=1.0\linewidth]{figures/scaling/strong}
+	\includegraphics[width=0.66\linewidth]{figures/scaling/strong}
 	\caption{
-		Strong scaling plot: wall time per simulation step.
+		Strong scaling plot: wall time per TDDFT simulation step for Aluminum FCC supercell.
 		These simulations are run in LLNL's Lassen supercomputer (4 NVIDIA Tesla P100 Pascal GPUs per compute node).
 	}
 	\label{fig:scaling_strong}
@@ -137,9 +137,9 @@ Unfortunately this last case has a non-negligible overhead in the communication 
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=1.0\linewidth]{figures/scaling/gpu_vs_cpu}
+	\includegraphics[width=0.66\linewidth]{figures/scaling/gpu_vs_cpu}
 	\caption{
-		Comparison of INQ GPU and CPU implementations.
+		Comparison of INQ GPU and CPU implementations TDDFT timings for Aluminum FCC supercell
 		These simulations are run in LLNL's Lassen supercomputer (4 NVIDIA Tesla P100 Pascal GPUs per compute node).
 	}
 	\label{fig:scaling_gpu_vs_cpu}
@@ -147,7 +147,7 @@ Unfortunately this last case has a non-negligible overhead in the communication 
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=1.0\linewidth]{figures/scaling/weak}
+	\includegraphics[width=0.66\linewidth]{figures/scaling/weak}
 	\caption{
 		Best timing achieved for variable system size (\emph{Weak} scaling).
 		These simulations are run in LLNL's Lassen supercomputer (4 NVIDIA Tesla P100 Pascal GPUs per compute node).
@@ -165,7 +165,7 @@ Overall, we developed a code that scales extremely well in modern clusters with 
 \paragraph{Validation of results:}
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=1.0\linewidth]{figures/Results-Fig.pdf}
+	\includegraphics[width=0.66\linewidth]{figures/Results-Fig.pdf}
 	\caption{
 		(Adapted from Ref.~\cite{Andrade2021}.) 
 		Comparison between \textsc{inq} and the established electronic structure codes \textsc{Quantum Espresso} (QE) and \textsc{octopus}.
@@ -187,7 +187,22 @@ For details on calculation parameters please refer to Ref.~\cite{Andrade2021}.
 As apparent from the comparisons shown in Figure~\ref{fig:inq_results}, we find that absolute total energies from \textsc{inq} are within \(0.3~\mathrm{mHartree/atom}\) of the QE reference. 
 Furthermore, the optical response of a gas phase water molecule as obtained from \textsc{inq} is seen to be in excellent agreement with the corresponding result from \textsc{octopus} in the time domain (Fig.~\ref{fig:inq_results}(c)) and therefore excitation frequ1encies in the optical absorption spectrum are also found to match closely across a wide energy range. 
 
-\textbf{Mention stopping, hook to Future work}
+\begin{figure}
+	\centering
+	\includegraphics[width=0.66\columnwidth]{figures/al_stopping}
+	\caption{
+		Electronic stopping power obtained by direct simulation of a proton projectile moving in aluminum atom fcc super cell with different codes: \textsc{inq}, \textsc{qball} (from Ref.~\cite{Schleife2015}) and \textsc{siesta} with atom-centered double-zeta plus polarization basis (DZP) (from Ref.~\cite{Correa2012}).
+		Each point is obtained by evaluating the steady energy rate dissipation.
+		All simulations are with 3 valence (explicitly simulated) electrons per aluminum which is enough for channeling stopping power.
+	}
+	\label{fig:al_stopping}
+\end{figure}
+
+Finally, \textsc{inq} was tested against a medium-to-high energy application, namely electronic stopping power (Fig.~\ref{fig:al_stopping}). 
+Despite the association with other areas of research, such as fusion and radiation damage, electronic stopping power plays an important role in the development of the theory of solids~\cite{Thomson1912, Darwin1912, Bohr1913} and the electron gas~\cite{Lindhard1964}.
+Furthermore, by interpreting the electron-phonon coupling as low velocity limit of stopping power, TDDFT offers the only scalable method to non-perturbative access to calculate electron-phonon coupling in complicated systems or at finite temperature~\cite{Caro2015}. 
+To develop this method is important to achieve reliable electronic stopping power in the regime of a tenth to a hundredth of atomic unit of velocity, in a variety of atomistic environments. 
+This is the topic the NPNEQ's publication Ref.~\cite{Quashie2020} were a record low value of ion velocity \(0.04~\mathrm{a.u.}\) is achieved in a non-adiabatic calculation and its relation with the electronic density of state at the Fermi level is established.
 
 \subsubsection{Tight Binding model for nonequilibrium dynamics}\label{sec:tight-binding}
 
@@ -322,8 +337,26 @@ Spin-orbit coupling for dynamics (Task 1.3)
 
 \paragraph{Spiral boundary conditions}
 
-\paragraph{Beyond Ehrenfest dynamics} 
-Mention: Electron-phonon development from stopping power.  Figure.
+\paragraph{Beyond Ehrenfest dynamics}
+
+Historically, DFT codes that calculate forces can implement Born-Oppenheimer (BO) molecular dynamics (classical ions).
+Using a similar formulation in TDDFT, not only \textsc{Inq} supports Ehrenfest dynamics (classical ions evolving within excited electrons) but it also offers the perfect framework to implement other forms of non-adiabatic molecular dynamics~\cite{Tapavicza2013,Curchod2018}. 
+A variety of proposed dynamics departing from BI and \emph{beyond} Ehrenfest would be faster to experiment with.
+For example, it has been noted recently that friction terms can be added \emph{ab initio} to model electron-phonon coupling with classical ions.
+These dissipative terms can be calculated on-the-fly by launching \emph{tangential} short TDDFT simulations (in parallel to the main trajectory evolution).
+The dissipative contributions can then be added to the Newton's equation of motion by terms in the form of \(M \ddot{\vec{R}} = \vec{F}_\text{BO} - \beta\dot{\vec{R}} + \vec{\xi}\), where is \(\beta\) and \(\xi\) are a friction tensor and correlated noise respectively~\cite{Tamm2018}.
+This formulation is being tested by not only calculating a certain \emph{limit} of electronic stopping power (\(\beta\)) of the same atoms that form the crystal (or a liquid) but also by calculating the corresponding excited-state force fluctuations (\(\xi\)) via TDDFT (Fig.~\ref{fig:stopping_eph}).
+
+\begin{figure}
+\centering
+\includegraphics[width=0.9\columnwidth]{figures/stopping_eph}
+\caption{
+	Electron-phonon coupling seen as an electronic-stopping power process. 
+	The analogy is that, while a fast intruding projectile is stopped by the host electrons (channel or off-channel densities), an oscillating atom from the host is subject to the friction of the electrons present around the atomic site.
+}
+\label{fig:stopping_eph}
+\end{figure}
+
 
 \paragraph{Interfacing \textsc{inq} with Tight-Binding codes}
 
