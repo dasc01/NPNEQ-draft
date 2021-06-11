@@ -37,56 +37,97 @@ Note to ourselves:
 }
 \clearpage
 
-\section{Progress and Accomplishments to date} 
-As outlined above, the primary strategic objective of the NPNEQ CMS center during the first 18 months of the funding period was the development of a \textbf{portable}, \textbf{extensible}, \textbf{scalable} and \textbf{reliable} DFT/RT-TDDFT framework that is fully compatible with existing petascale and near-term exascale \textbf{hybrid CPU-GPU} architectures. This objective was achieved with the recent release of \textsc{INQ}~\cite{Andrade2021}. In parallel however, the team also pursued multi-institutional collaborative research efforts leading to science outcomes in the area of \textit{ultrafast materials science} using alternate tools and methodologies some of which will be incorporated into the larger INQ ecosystem of codes in future. In the following we provide a summary of both the software development and scientific research efforts within NPNEQ.   
+\section{Progress and Accomplishments to date}
+
+As outlined above, the primary strategic objective of the NPNEQ CMS center during the first 18 months of the funding period was the development of a \textbf{portable}, \textbf{extensible}, \textbf{scalable} and \textbf{reliable} DFT/RT-TDDFT framework that is fully compatible with existing petascale and near-term exascale \textbf{hybrid CPU-GPU} architectures.
+This objective was achieved with the recent release of \textsc{inq}~\cite{Andrade2021}. 
+In parallel however, the team also pursued multi-institutional collaborative research efforts leading to science outcomes in the area of \emph{ultrafast materials science} using alternate tools and methodologies, some of which will be incorporated into the larger INQ ecosystem of codes in future. 
+In the following we provide a summary of both the software development and scientific research efforts within NPNEQ.
+
 \subsection{Code Development}
+
 \subsubsection{The INQ DFT/TDDFT platform} 
-With the widespread adoption of Graphical Processing Units (GPUs) as a powerful and energy efficient hardware paradigm for scientific computing over the past fifteen years and with the ongoing migration of DOE's national super-computing facilities from CPU to networked hybrid CPU-GPU architectures, it is of paramount importance within computational materials science that the community has access to electronic structure codes that are fully compatible with the emerging GPU computing landscape. The INQ platform~\cite{Andrade2021} under development by the NPNEQ team addresses this need within the context of Density Functional Theory (DFT) based approaches to materials simulation while further specializing to nonperturbative simulations of materials under nonequilibrum conditions. During the first 18 months of this funding period, the NPNEQ center  accomplished the design and development tasks necessary to deliver a modular and extensible GPU-accelerated software solution for DFT/TDDFT led by LLNL PIs \textbf{Andrade} and \textbf{Correa}. In the following we outline the unique design features of INQ as well as it's current capabilities:
+
+With the widespread adoption of Graphical Processing Units (GPUs) as a powerful and energy efficient hardware paradigm for scientific computing over the past fifteen years and with the ongoing migration of DOE's national super-computing facilities from CPU to networked hybrid CPU-GPU architectures, it is of paramount importance within computational materials science that the community has access to electronic structure codes that are fully compatible with the emerging GPU computing landscape.
+The INQ platform~\cite{Andrade2021} under development by the NPNEQ team addresses this need within the context of Density Functional Theory (DFT) based approaches to materials simulation while further specializing to nonperturbative simulations of materials under nonequilibrum conditions.
+During the first 18 months of this funding period, the NPNEQ center accomplished the design and development tasks necessary to deliver a modular and extensible GPU-accelerated software solution for DFT/TDDFT led by LLNL PIs \textbf{Andrade} and \textbf{Correa}.
+In the following we outline the unique design features of INQ as well as it's current capabilities:
 
 \paragraph{General features and design:}
-The design philosophy of INQ differs in many important respects from established Fortran/C based DFT/TDDFT codes developed in previous decades to run on CPUs: Unlike the CPU computing model that matured decades ago, GPU computing is still rapidly evolving with different hardware designs  competing for primacy in the super-computing space and vendors making significant low-level updates and modifications on a regular basis. \textsc{INQ} is therefore designed from the outset to be easily modified and improved on top of evolving hardware, while providing consistent results and behavior independent of specific vendor platforms. \textsc{INQ} achieves this goal through abstraction enabled by modern C++ programming, by implementing a clear separation between different classes of software components namely: application (DFT/TDDFT) specific code, infrastructure (basis-set, boundary conditions, data-structures etc) code and low-level numerical library (blas, FFTs etc) code. 
+The design philosophy of INQ differs in many important respects from established Fortran/C based DFT/TDDFT codes developed in previous decades to run on CPUs: Unlike the CPU computing model that matured decades ago, GPU computing is still rapidly evolving with different hardware designs competing for primacy in the super-computing space and vendors making significant low-level updates and optimizations on a regular basis.
+\textsc{Inq} is therefore designed from the outset to be easily modified and improved on top of evolving hardware, while providing consistent results and behavior independent of specific vendor platforms. 
+\textsc{Inq} achieves this goal through abstractions enabled by modern C++ programming, by implementing a clear separation between different classes of software components, namely: application (DFT/TDDFT) specific code, infrastructure (basis-set, boundary conditions, data-structures etc) code and low-level numerical library (blas, FFTs etc) code. 
 \newline 
 \newline
-As shown if Fig~\ref{fig:inq_design}(a), in traditional DFT/TDDFT programs, the different software components are rather tightly coupled into monolithic software units and the programmer may encounter all classes of code within a given subroutine or function. \textsc{INQ} on the other hand implements a hierarchical structure with an application (DFT/TDDFT) code layer that sits on top of an infrastructure library layer which gracefully handles all hardware-dependent decisions. A programmer working with the DFT/TDDFT layer then encounters a much simplified programming interface that  syntactically resembles the relevant physics equations~(see ref.~\cite{Andrade2021}) and is shielded from lower level representation-specific and hardware-specific details. This hierarchical design is critical for developing code that is hardware portable while simultaneously reducing the learning curve for new developers from the DFT community to be able to quickly add functionality in the application layer. Note that while interpreted scripting languages such as Python, MATLAB etc can provide a similar type of abstraction, there is a performance cost associated with them which is not incurred by \textsc{INQ} as it relies on compiled C++.   
+As shown in Fig.~\ref{fig:inq_design}(a), in traditional DFT/TDDFT programs, the different software components are rather tightly coupled into monolithic software units and the programmer may encounter all classes of code within a given subroutine or function. 
+\textsc{Inq} on the other hand implements a hierarchical structure with an application (DFT/TDDFT) code layer that sits on top of an infrastructure library layer which gracefully handles all hardware-dependent decisions. 
+A programmer working with the DFT/TDDFT layer then encounters a much simplified programming interface that syntactically resembles the relevant physics equations~(see Ref.~\cite{Andrade2021}) and is shielded from lower level representation-specific and hardware-specific details. 
+This hierarchical design is critical for developing code that is hardware portable while simultaneously reducing the learning curve for new developers from the DFT community to be able to quickly add functionality in the application layer. 
+Note that while interpreted scripting languages such as Python, MATLAB, etc. can provide a similar type of abstraction, there is a performance cost associated with them which is not incurred by \textsc{inq} as it relies on compiled C++.
+
 \begin{figure}[h]
-    \centering
-    \includegraphics[width=1.0\linewidth]{figures/INQ_design_features.pdf}
-    \caption{
-        Key design features of the INQ framework. (a) INQ was built from the outset as a library that can operate on both CPU and GPU hardware, (b) At roughly 12,000 lines of code, INQ is extremely lightweight compared to other DFT/TDDFT codes offering comparable functionality. Adopting GPU-compatible libxc substantially reduced the size of INQ's internal codebase.(c) INQ brings together a highly modular hierarchy of libraries ensuring maximum adaptability with respect to future hardware and software changes.    
-    }
-    \label{fig:inq_design}
+	\centering
+	\includegraphics[width=1.0\linewidth]{figures/INQ_design_features.pdf}
+	\caption{
+		Key design features of the INQ framework.
+		(a) INQ was built from the outset as a library that can operate on both CPU and GPU hardware,
+		(b) At roughly 12,000 lines of code, INQ is extremely lightweight compared to other DFT/TDDFT codes offering comparable functionality.
+		Adopting GPU-compatible \textsc{libxc} substantially reduced the size of INQ's internal codebase.
+		(c) INQ brings together a highly modular hierarchy of libraries ensuring maximum adaptability with respect to future hardware and software changes.
+	}
+	\label{fig:inq_design}
 \end{figure}
+
 \newline
-The hardware portability of \textsc{INQ} is achieved in practice through a highly modular design of its library layer which brings together a number of different components that were developed both at LLNL and by the extended DFT community. Some of the key libraries used in INQ are:
+The hardware portability of \textsc{inq} is achieved in practice through a highly modular design of its library layer which brings together a number of different components that were developed both at LLNL and by the extended DFT community. 
+
+Some of the key libraries used in INQ are:
 \begin{itemize}
-    \item \textbf{MULTI:} Developed by PI \textbf{Correa} at LLNL, \textsc{MULTI} provides multidimensional array access on both CPU and GPU memory models while abstracting operations over arrays without compromising maximum performance. It also provides the interface between \textsc{INQ} and vendor provided linear algebra, FFT and C++ standard libraries.
-    \item \textbf{B.MPI3:} B-MPI3 is a C++ library wrapper for version 3.1 of the Message Passing Interface (MPI) standard that simplifies the its utilization while maintaining a similar level of performance as the more cumbersome native MPI C-language interface. B.MPI3 was developed by PI \textbf{Correa} at LLNL.
-    \item \textbf{PSEUDOPOD:} \textsc{PSEUDOPOD} is a CPU+GPU compatible library that handles pseudopotential (PP) parsing, filtering and other auxiliary tasks while supporting many popular PP formats as well standardized PP sets such as Pseudodojo and SG15. \textsc{PSEUDOPOD} developed by PI \textbf{Andrade} at LLNL, moves PP handling from the application layer to the library layer of INQ.
-    \item \textbf{LIBXC:} Libxc is a standalone library of exchange and correlation (XC) functionals initially developed by M. Marques. As part of the development on \textsc{INQ}, PI \textbf{Andrade} implemented a GPU extension of libxc that relies on cuda ‘unified memory’ to store its internal data structures. \textsc{INQ} therefore has the ability to evaluate XC functionals on GPUs.  
+	\item \textbf{MULTI:} Developed by PI \textbf{Correa} at LLNL, \textsc{MULTI} provides multidimensional array access on both CPU and GPU memory models while abstracting operations over arrays without compromising maximum performance. 
+	It also provides the interface between \textsc{inq} and vendor provided linear algebra, FFT and C++ standard libraries.
+	\item \textbf{B.MPI3:} B-MPI3 is a C++ library wrapper for version 3.1 of the Message Passing Interface (MPI) standard that simplifies the its utilization while maintaining a similar level of performance as the more cumbersome native MPI C-language interface. 
+	B.MPI3 was developed by PI \textbf{Correa} at LLNL.
+	\item \textbf{PSEUDOPOD:} \textsc{PSEUDOPOD} is a CPU+GPU compatible library that handles pseudopotential (PP) parsing, filtering and other auxiliary tasks while supporting many popular PP formats as well standardized PP sets such as Pseudodojo and SG15. 
+	\textsc{PSEUDOPOD} developed by PI \textbf{Andrade} at LLNL, moves PP handling from the application layer to the library layer of INQ.
+	\item \textbf{LIBXC:} Libxc is a standalone library of exchange and correlation (XC) functionals initially developed by M. Marques. 
+	As part of the development on \textsc{inq}, PI \textbf{Andrade} implemented a GPU extension of \textsc{libxc} that relies on cuda ‘unified memory’ to store its internal data structures. 
+	\textsc{INQ} therefore has the ability to evaluate XC functionals on GPUs, which is critical to maintain all data in the GPU.
 \end{itemize}
-Figure~\ref{fig:inq_design}(c) shows the interaction between these \textsc{INQ} modules and lower-level vendor provided libraries.  The modularization of \textsc{INQ}'s library layer affords several advantages: For instance, different components can be developed and tested independently as well as shared with other codes, to avoid duplication of work and enable collaborative development. Following changes to low-level hardware-optimized libraries, only a small portion of the code needs to be updated in a way that is transparent to application layer developers. Furthermore, by creating libraries and offloading tasks to them whenever possible, the codebase internal to \textsc{INQ} can be kept relatively small as shown in figure~\ref{fig:inq_design}(b). 
 
-Finally, in order to ensure reliability within a collaborative  environment,  \textsc{INQ} adopts a test-driven development (TDD) approach in line with modern software development best practices. Therefore the \textsc{INQ} codebase consists of both unit and functional tests that are run regularly within an automated continuous delivery platform hosted on gitlab. This ensures that only code modifications that do not lead to errors anywhere in the codebase are accepted.
+Figure~\ref{fig:inq_design}(c) shows the interaction between these \textsc{inq} modules and lower-level vendor provided libraries. 
+The modularization of \textsc{inq}'s library layer affords several advantages: For instance, different components can be developed and tested independently as well as shared with other codes, to avoid duplication of work and enable collaborative development. 
+Following changes to low-level hardware-optimized libraries, only a small portion of the code needs to be updated in a way that is transparent to application layer developers. 
+Furthermore, by creating libraries and offloading tasks to them whenever possible, the codebase internal to \textsc{inq} can be kept relatively small as shown in Fig.~\ref{fig:inq_design}(b). 
 
-The result is a fully functional yet light-weight DFT/TDDFT framework that is portable across hardware platforms, offers optimal scaling on distributed hybrid CPU-GPU platforms combined with reliable numerical accuracy. \textsc{INQ}'s DFT/TDDFT application layer currently implements semi-local DFT total energies, forces and real-time propagation of the time-dependent KS equations within the adiabatic XC approximations for both molecular and solid-state systems within a periodic supercell framework. In the following we discuss performance and validation tests of these capabilities within \textsc{INQ}. 
+Finally, in order to ensure reliability within a collaborative environment, \textsc{inq} adopts a test-driven development (TDD) approach in line with modern software development best practices. 
+Therefore the \textsc{inq} codebase consists of both unit and functional tests that are run regularly within an automated continuous delivery platform hosted on gitlab. This workflow ensures that only code modifications that do not lead to errors anywhere in the codebase are accepted.
+
+The result is a fully functional yet light-weight DFT/TDDFT framework that is portable across hardware platforms, offers optimal scaling on distributed hybrid CPU-GPU platforms combined with reliable numerical accuracy. 
+\textsc{Inq}'s DFT/TDDFT application layer currently implements semi-local DFT total energies, forces and real-time propagation of the time-dependent KS equations within the adiabatic XC approximations for both molecular and solid-state systems within a periodic supercell framework. 
+In the following, we discuss performance and validation tests of these capabilities within \textsc{inq}. 
 
 \paragraph{GPU-MPI functionality and scaling:}
 1-1.5 pages including figures
+
 \paragraph{Validation of results:}
 \begin{figure}[h]
-    \centering
-    \includegraphics[width=1.0\linewidth]{figures/Results-Fig.pdf}
-    \caption{
-         (adapted from ref.~\cite{Andrade2021}. Comparison between \textsc{INQ} and the established electronic structure codes \textsc{quantum espresso} (QE) and \textsc{octopus}.
-Results for ground state total energies and real-time TDDFT optical response are shown. (a) Total energy vs bond length in
-N2 (b) Total energy vs lattice constant in bulk Silicon (c) Time evolution of the dipole moment in gas phase H$_2$O following a
-“kick” perturbation (d) Linear optical absorption of molecular H$_2$O. In all cases there is a high-level of agreement between the
-codes.  
-    }
-    \label{fig:inq_results}
+	\centering
+	\includegraphics[width=1.0\linewidth]{figures/Results-Fig.pdf}
+	\caption{
+		(Adapted from Ref.~\cite{Andrade2021}.) 
+		Comparison between \textsc{inq} and the established electronic structure codes \textsc{Quantum Espresso} (QE) and \textsc{octopus}.
+Results for ground state total energies and real-time TDDFT optical response are shown. 
+		(a) Total energy vs bond length in \(\mathrm{N_2}\).
+		(b) Total energy vs lattice constant in bulk Silicon. 
+		(c) Time evolution of the dipole moment in gas phase \(\mathrm{H_2O}\) following a ``kick'' perturbation. 
+		(d) Linear optical absorption of molecular \(H_2O\). 
+		In all cases there is a high-level of agreement between the codes.
+	}
+	\label{fig:inq_results}
 \end{figure}
 
-For a new scientific code it is fundamental to produce results that are consistent with other approaches and codes. As \textsc{INQ} follows a test-driven development approach, \textsc{INQ}'s codebase is continuously tested and validated at multiple levels against analytical results or benchmark data obtained from other established codes such as Quantum Espresso. We recently carried out higher level end-to-end tests of \textsc{INQ} as a part of the software release validating \textsc{INQ} results against corresponding
+For a new scientific code it is fundamental to produce results that are consistent with other approaches and codes. 
+As \textsc{inq} follows a test-driven development approach, \textsc{inq}'s codebase is continuously tested and validated at multiple levels against analytical results or benchmark data obtained from other established codes such as Quantum Espresso. We recently carried out higher level end-to-end tests of \textsc{INQ} as a part of the software release validating \textsc{INQ} results against corresponding
 quantities obtained from established plane-wave and realspace grid codes: \textsc{Quantum Espresso} (QE) and \textsc{Octopus}. For this purpose we chose observables such as molecular bond lengths and crystal lattice parameters based on total-energy minimization, as well as linear optical response from real-time propagation as the relevant quantities to be compared. For details on calculation parameters please refer to ref.~\cite{Andrade2021}. As apparent from the comparisons shown in Figure~\ref{fig:inq_results}, we find that absolute total energies from \textsc{INQ} are within 0.3 mHartree/atom of the QE reference. Furthermore, the optical response of a gas phase water molecule as obtained from \textsc{INQ} is seen to be in excellent agreement with the corresponding result from \textsc{Octopus} in the time domain (Fig~\ref{fig:inq_results}(c)) and therefore excitation frequencies in the optical absorption spectrum are also found to match closely across a wide energy range. 
 
 \textbf{Mention stopping, hook to Future work}
