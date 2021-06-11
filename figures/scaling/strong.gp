@@ -1,6 +1,7 @@
 set term pdf font "Helvetica Bold, 18" linewidth 1.5
 set output "strong.pdf"
 
+set size 1, 0.7
 set style data linespoints
 
 set key outside invert reverse bottom
