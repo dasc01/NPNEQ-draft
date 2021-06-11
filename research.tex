@@ -158,7 +158,7 @@ Overall, we developed a code that scales extremely well in modern clusters with 
 \paragraph{Validation of results:}
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=0.66\linewidth]{figures/Results-Fig.pdf}
+	\includegraphics[width=1.0\linewidth]{figures/Results-Fig.pdf}
 	\caption{
 		(Adapted from Ref.~\cite{Andrade2021}.) 
 		Comparison between \textsc{inq} and the established electronic structure codes \textsc{Quantum Espresso} (QE) and \textsc{octopus}.
@@ -168,6 +168,9 @@ Results for ground state total energies and real-time TDDFT optical response are
 		(c) Time evolution of the dipole moment in gas phase \(\mathrm{H_2O}\) following a ``kick'' perturbation. 
 		(d) Linear optical absorption of molecular \(H_2O\). 
 		In all cases there is a high-level of agreement between the codes.
+		(e)Electronic stopping power obtained by direct simulation of a proton projectile moving in aluminum atom fcc super cell with different codes: \textsc{inq}, \textsc{qball} (from Ref.~\cite{Schleife2015}) and \textsc{siesta} with atom-centered double-zeta plus polarization basis (DZP) (from Ref.~\cite{Correa2012}).
+		Each point is obtained by evaluating the steady energy rate dissipation.
+		All simulations are with 3 valence (explicitly simulated) electrons per aluminum which is enough for channeling stopping power.
 	}
 	\label{fig:inq_results}
 \end{figure}
@@ -180,18 +183,18 @@ For details on calculation parameters please refer to Ref.~\cite{Andrade2021}.
 As apparent from the comparisons shown in Figure~\ref{fig:inq_results}, we find that absolute total energies from \textsc{inq} are within \(0.3~\mathrm{mHartree/atom}\) of the QE reference. 
 Furthermore, the optical response of a gas phase water molecule as obtained from \textsc{inq} is seen to be in excellent agreement with the corresponding result from \textsc{octopus} in the time domain (Fig.~\ref{fig:inq_results}(c)) and therefore excitation frequ1encies in the optical absorption spectrum are also found to match closely across a wide energy range. 
 
-\begin{figure}
-	\centering
-	\includegraphics[width=0.66\columnwidth]{figures/al_stopping}
-	\caption{
-		Electronic stopping power obtained by direct simulation of a proton projectile moving in aluminum atom fcc super cell with different codes: \textsc{inq}, \textsc{qball} (from Ref.~\cite{Schleife2015}) and \textsc{siesta} with atom-centered double-zeta plus polarization basis (DZP) (from Ref.~\cite{Correa2012}).
-		Each point is obtained by evaluating the steady energy rate dissipation.
-		All simulations are with 3 valence (explicitly simulated) electrons per aluminum which is enough for channeling stopping power.
-	}
-	\label{fig:al_stopping}
-\end{figure}
+% \begin{figure}
+% 	\centering
+% 	\includegraphics[width=0.66\columnwidth]{figures/al_stopping}
+% 	\caption{
+% 		Electronic stopping power obtained by direct simulation of a proton projectile moving in aluminum atom fcc super cell with different codes: \textsc{inq}, \textsc{qball} (from Ref.~\cite{Schleife2015}) and \textsc{siesta} with atom-centered double-zeta plus polarization basis (DZP) (from Ref.~\cite{Correa2012}).
+% 		Each point is obtained by evaluating the steady energy rate dissipation.
+% 		All simulations are with 3 valence (explicitly simulated) electrons per aluminum which is enough for channeling stopping power.
+% 	}
+% 	\label{fig:al_stopping}
+% \end{figure}
 
-Finally, \textsc{inq} was tested against a medium-to-high energy application, namely electronic stopping power (Fig.~\ref{fig:al_stopping}). 
+Finally, \textsc{inq} was tested against a medium-to-high energy application, namely electronic stopping power (Fig.~\ref{fig:inq_results}(e)). 
 Despite the association with other areas of research, such as fusion and radiation damage, electronic stopping power plays an important role in the development of the theory of solids~\cite{Thomson1912, Darwin1912, Bohr1913} and the electron gas~\cite{Lindhard1964}.
 Furthermore, by interpreting the electron-phonon coupling as low velocity limit of stopping power, TDDFT offers the only scalable method to non-perturbative access to calculate electron-phonon coupling in complicated systems or at finite temperature~\cite{Caro2015}. 
 To develop this method is important to achieve reliable electronic stopping power in the regime of a tenth to a hundredth of atomic unit of velocity, in a variety of atomistic environments. 
@@ -268,14 +271,14 @@ Scalability of the \textsc{inq} code will enable these calculations in challengi
 
 \subsubsection{Ultrafast dynamics in strong-field ionized liquid water} 
 
-\begin{figure}[h]
-	\centering
-	\includegraphics{figures/Water}
-	\caption{
-		The ionization of liquid water and formation of solvated \(\mathrm{H_3O^+}\), \(\mathrm{OH\cdot}\) radical and electron species is followed by the local thermalization involving energy exchange between the electronic and ionic degrees of freedom.
-	}
-	\label{fig:water}
-\end{figure}
+% \begin{figure}[h]
+% 	\centering
+% 	\includegraphics{figures/Water}
+% 	\caption{
+% 		The ionization of liquid water and formation of solvated \(\mathrm{H_3O^+}\), \(\mathrm{OH\cdot}\) radical and electron species is followed by the local thermalization involving energy exchange between the electronic and ionic degrees of freedom.
+% 	}
+% 	\label{fig:water}
+% \end{figure}
 
 Photo-excitation induced structural dynamics in liquid water represents a paradigmatic case of excited state electron-ion dynamics in the condensed phase. 
 In particular, the radiolysis of liquid water and its aftermath is a process of fundamental importance in a variety of technological contexts~\cite{Garrett2005} such as energy harvesting, biochemistry, biomedicine, corrosion mitigation, etc. 
@@ -353,7 +356,7 @@ This formulation is being tested by not only calculating a certain \emph{limit} 
 \label{fig:stopping_eph}
 \end{figure}
 
->>>>>>> 22eb0b7e1e7f4df9a39a5f4fa87912484fb6dd71
+% >>>>>>> 22eb0b7e1e7f4df9a39a5f4fa87912484fb6dd71
 
 \paragraph{Interfacing \textsc{inq} with Tight-Binding codes}\label{sec:future-tb}
 
