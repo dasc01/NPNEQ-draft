@@ -185,45 +185,52 @@ GPU optimization of the \textsc{inq} code will be used to extend these simulatio
 
 \subsubsection{Halide perovskite work}
 
-High defect tolerance has been considered as a main reason for the long charge carrier lifetime and
-high photoluminescence quantum yield in bulk lead halide perovskites (LHPs). On the other hand,
-surface defects play a critical role in determining charge carrier dynamics and optical properties,
-especially for LHP nanocrystals and quantum dots. Revealing the nature of surface defects and
-developing strategy for their effective passivation are thus of strong interest.  {\bf Tan} and {\bf Ogitsu}, together with collaborators at UCSC~\cite{Smart2021}, have used first-principles calculations to reveal that interstitial and antisite defects in a prototypical LHP, CsPbBr$_3$, can have lower formation energy when they form at the surface instead of bulk while simultaneously creating deep trap states within the bandgap.  We show how to choose molecular ligands to passivating these defects, eliminating trap states in favor of shallow states, which enhances photoluminescence. (See Fig~\ref{fig:defect}) This work has implications for  the field of LHPs, especially LHP devices where interfacial chemistry plays an important role in the optoelectronic properties and stability.
+High defect tolerance has been considered as a main reason for the long charge carrier lifetime and high photoluminescence quantum yield in bulk lead halide perovskites (LHPs). 
+On the other hand, surface defects play a critical role in determining charge carrier dynamics and optical properties, especially for LHP nanocrystals and quantum dots. Revealing the nature of surface defects and developing strategy for their effective passivation are thus of strong interest. 
+{\bf Tan} and {\bf Ogitsu}, together with collaborators at UCSC~\cite{Smart2021}, have used first-principles calculations to reveal that interstitial and antisite defects in a prototypical LHP, \(\mathrm{CsPbBr_3}\), can have lower formation energy when they form at the surface instead of bulk while simultaneously creating deep trap states within the bandgap.
+We show how to choose molecular ligands to passivating these defects, eliminating trap states in favor of shallow states, which enhances photoluminescence. 
+(See Fig.~\ref{fig:defect}) This work has implications for  the field of LHPs, especially LHP devices where interfacial chemistry plays an important role in the optoelectronic properties and stability.
 
-This work forms the basis for planned real-time simulations of lossy processes at these defects in the LHPs, such as non-radiative recombination processes and dephasing, which are of fundamental interest for in optoelectronic applications. Even though typical RT-TDDFT simulations are shorter than the natural time scales of these processes, it has been demonstrated that their rates can still be extracted, by using a cumulant expansion approach~\cite{Qiao2020}. Scalability of the \textsc{inq} code will enable these calculations in challenging systems such as LHP surfaces defects, which contain a large number of electrons.     
+This work forms the basis for planned real-time simulations of lossy processes at these defects in the LHPs, such as non-radiative recombination processes and dephasing, which are of fundamental interest for optoelectronic applications. 
+Even though typical RT-TDDFT simulations are shorter than the natural time scales of these processes, it has been demonstrated that their rates can still be extracted, by using a cumulant expansion approach~\cite{Qiao2020}. 
+Scalability of the \textsc{inq} code will enable these calculations in challenging systems such as LHP surfaces defects, which contain a large number of electrons.     
 
 
 \begin{figure}[h]
-    \centering
-    \includegraphics{figures/defect_passivation.png}
-    \caption{
-        Schematic atomic structure of defects at the surface of CsPbBr$_3$, which are susceptible to non-radiative recombination when unpassivated (left), but become less detrimental to radiative recombination when passivated (right).
-    }
-    \label{fig:defect}
+	\centering
+	\includegraphics{figures/defect_passivation}
+	\caption{
+		Schematic atomic structure of defects at the surface of \(\mathrm{CsPbBr_3}\), which are susceptible to non-radiative recombination when unpassivated (left), but become less detrimental to radiative recombination when passivated (right).
+	}
+	\label{fig:defect}
 \end{figure}
 
 \textcolor{red}{Descriptions of selected type-B projects.}
+
 \subsubsection{Ultrafast dynamics in strong-field ionized liquid water} 
+
 \begin{figure}[h]
-    \centering
-    \includegraphics{figures/Water}
-    \caption{
-        The ionization of liquid water and formation of solvated \(\mathrm{H_3O^+}\), \(\mathrm{OH\cdot}\) radical and electron species is followed by the local thermalization involving energy exchange between the electronic and ionic degrees of freedom.
-    }
-    \label{fig:water}
+	\centering
+	\includegraphics{figures/Water}
+	\caption{
+		The ionization of liquid water and formation of solvated \(\mathrm{H_3O^+}\), \(\mathrm{OH\cdot}\) radical and electron species is followed by the local thermalization involving energy exchange between the electronic and ionic degrees of freedom.
+	}
+	\label{fig:water}
 \end{figure}
 
 Photo-excitation induced structural dynamics in liquid water represents a paradigmatic case of excited state electron-ion dynamics in the condensed phase. 
-In particular, the radiolysis of liquid water and its aftermath is a process of fundamental importance in a variety of technological contexts~\cite{Garrett2005} such energy harvesting, biochemistry, biomedicine, corrosion mitigation, etc. 
+In particular, the radiolysis of liquid water and its aftermath is a process of fundamental importance in a variety of technological contexts~\cite{Garrett2005} such as energy harvesting, biochemistry, biomedicine, corrosion mitigation, etc. 
 Therefore, investigating the interplay between the electronic and ionic degrees of freedom in photo-ionized liquid water on the femto-picosecond timescales relevant to the creation and transformation of short-lived reaction intermediates~\cite{Loh2020} is of interest to both experiment and theory.
-Within the current funding period, NPNEQ researchers at SLAC collaborated with experimental teams working at SLAC's MeV-UED instrument to uncover the structural finger-prints of hydronium cation-hydroxyl radical pairs on femtosecond timescales in strong-field ionized liquid water (See Fig~\ref{fig:water}). 
-In this study we deployed velocity-gauge real-time TDDFT as implemented within the \textsc{SALMON} code~\cite{salmon} to estimate the photo-ionization fraction in liquid water for experimentally relevant laser pulse parameters. 
-Our simulations revealed a nonlinear multi-step photo-ionization process in liquid water subjected to high-intensity near-infrared radiation and our predicted excited electron energy distribution subsequently informed classical models of thermalization based on molecular dynamics. A manuscript summarizing the findings of our experiment-theory collaboration is currently under review at the journal \textit{Science}.
+Within the current funding period, NPNEQ researchers at SLAC collaborated with experimental teams working at SLAC's MeV-UED instrument to uncover the structural finger-prints of hydronium cation-hydroxyl radical pairs on femtosecond timescales in strong-field ionized liquid water (See Fig.~\ref{fig:water}). 
+In this study, we deployed velocity-gauge real-time TDDFT as implemented within the \textsc{salmon} code~\cite{salmon} to estimate the photo-ionization fraction in liquid water for experimentally relevant laser pulse parameters. 
+Our simulations revealed a nonlinear multi-step photo-ionization process in liquid water subjected to high-intensity near-infrared radiation and our predicted excited electron energy distribution subsequently informed classical models of thermalization based on molecular dynamics. 
+A manuscript summarizing the findings of our experiment-theory collaboration is currently under review at the journal \emph{Science}.
 In the near future we plan to further extend our studies in this prototypical water system by simulating nonadiabatic Ehrenfest electron-ion dynamics during and after laser illumination using our RT-TDDFT platform \textsc{inq} and compare our results with recent ultrafast experiments. 
+
 \subsubsection{WTe2 collaborations}
 
 \subsubsection{Charge density wave melting in 2D materials}
+
 In this experimental collaboration~\cite{Siddiqui2020}, we perform the first ultrafast investigation of TaTe$_2$, which exhibits unique charge density wave (CDW) and lattice structural order characterised by a transition upon cooling from stripe-like trimer chains into a (3x3) superstructure of trimer clusters. 
 
 We develop computational models of the ultrafast photoinduced dynamics in TaTe$_2$, incorporating  electronic and atomic structure and their strong interactions to calculate the atomic trajectories. Density-functional calculations indicate that the initial quench is triggered by Ta trimer bonding to nonbonding transitions that destabilises the clusters, unlike CDW melting in other TaX$_2$ compounds. These predictions were verified by experimental work utilising MeV-scale ultrafast electron diffraction to resolve structural dynamics following intense pulsed laser excitation. We observe a rapid 1.4 ps melting of the low-temperature ordered state, followed by recovery of the clusters via thermalisation into a hot superstructure persisting for extended times.  Our work paves the way for further exploration and ultimately directed manipulation of the trimer superstructure for novel applications.
