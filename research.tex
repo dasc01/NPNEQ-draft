@@ -195,7 +195,6 @@ This work forms the basis for planned real-time simulations of lossy processes a
 Even though typical RT-TDDFT simulations are shorter than the natural time scales of these processes, it has been demonstrated that their rates can still be extracted, by using a cumulant expansion approach~\cite{Qiao2020}. 
 Scalability of the \textsc{inq} code will enable these calculations in challenging systems such as LHP surfaces defects, which contain a large number of electrons.     
 
-
 \begin{figure}[h]
 	\centering
 	\includegraphics{figures/defect_passivation}
@@ -231,15 +230,20 @@ In the near future we plan to further extend our studies in this prototypical wa
 
 \subsubsection{Charge density wave melting in 2D materials}
 
-In this experimental collaboration~\cite{Siddiqui2020}, we perform the first ultrafast investigation of TaTe$_2$, which exhibits unique charge density wave (CDW) and lattice structural order characterised by a transition upon cooling from stripe-like trimer chains into a (3x3) superstructure of trimer clusters. 
+In this experimental collaboration~\cite{Siddiqui2020}, we perform the first ultrafast investigation of \(\mathrm{TaTe_2}\), which exhibits unique charge density wave (CDW) and lattice structural order characterised by a transition upon cooling from stripe-like trimer chains into a (\(3\times 3\)) superstructure of trimer clusters. 
 
-We develop computational models of the ultrafast photoinduced dynamics in TaTe$_2$, incorporating  electronic and atomic structure and their strong interactions to calculate the atomic trajectories. Density-functional calculations indicate that the initial quench is triggered by Ta trimer bonding to nonbonding transitions that destabilises the clusters, unlike CDW melting in other TaX$_2$ compounds. These predictions were verified by experimental work utilising MeV-scale ultrafast electron diffraction to resolve structural dynamics following intense pulsed laser excitation. We observe a rapid 1.4 ps melting of the low-temperature ordered state, followed by recovery of the clusters via thermalisation into a hot superstructure persisting for extended times.  Our work paves the way for further exploration and ultimately directed manipulation of the trimer superstructure for novel applications.
-
-
+We develop computational models of the ultrafast photoinduced dynamics in \(\mathrm{TaTe_2}\), incorporating  electronic and atomic structure and their strong interactions to calculate the atomic trajectories. 
+Density-functional calculations indicate that the initial quench is triggered by Ta trimer bonding to nonbonding transitions that destabilises the clusters, unlike CDW melting in other \(\mathrm{TaX_2}\) compounds. 
+These predictions were verified by experimental work utilising MeV-scale ultrafast electron diffraction to resolve structural dynamics following intense pulsed laser excitation. 
+We observe a rapid \(1.4~\mathrm{ps}\) melting of the low-temperature ordered state, followed by recovery of the clusters via thermalization into a hot superstructure persisting for extended times.
+Our work paves the way for further exploration and ultimately directed manipulation of the trimer superstructure for novel applications.
 
 \section{Future Work}
+
 \subsection{Code developments}
+
 \subsubsection{Functionality additions to INQ}
+
 \paragraph{Exact exchange and Axc}
 
 Nonlocal functionals for Generalized Kohn-Sham (GKS) RT-TDDFT (Task 1.1)
@@ -269,12 +273,19 @@ Mention: Electron-phonon development from stopping power.  Figure.
 
 \paragraph{Interfacing \textsc{inq} with Tight-Binding codes}
 
-We plan to use \textsc{inq} in combination with our tight-binding dynamics code (Section.~\ref{sec:tight-binding}) for parameter extraction and for identification of the relevant degrees of freedom to be retained in these downfolded models. Having a well-defined interface for these tasks will accelerate projects of the sort described in Sections~\ref{sec:BPVE},~\ref{sec:tight-binding}. Dynamical Wannierization along TDDFT trajectories will provide Hamiltonian matrix elements for the construction of these models, generalizing an approach previously taken for Wannierization along classical MD trajectories~\cite{Abramovitch2021}. These script-heavy workflows will be greatly simplified in \textsc{inq}, which will include a language-level interface to the \textsc{Wannier90} library~\cite{Mostofi2008}. Other types of script-heavy workflows, especially those with high throughput aspects, will benefit similarly from the modularity of \textsc{inq}, which makes scripting and post-processing obsolete in favor of programmability within the single-language \textsc{inq} framework.
+We plan to use \textsc{inq} in combination with our tight-binding dynamics code (Section.~\ref{sec:tight-binding}) for parameter extraction and for identification of the relevant degrees of freedom to be retained in these downfolded models. 
+Having a well-defined interface for these tasks will accelerate projects of the sort described in Sections~\ref{sec:BPVE},~\ref{sec:tight-binding}. Dynamical Wannierization along TDDFT trajectories will provide Hamiltonian matrix elements for the construction of these models, generalizing an approach previously taken for Wannierization along classical MD trajectories~\cite{Abramovitch2021}. 
+These script-heavy workflows will be greatly simplified in \textsc{inq}, which will include a language-level interface to the \textsc{Wannier90} library~\cite{Mostofi2008}. 
+Other types of script-heavy workflows, especially those with high throughput aspects, will benefit similarly from the modularity of \textsc{inq}, which makes scripting and post-processing obsolete in favor of programmability within the single-language \textsc{inq} framework.
 
-Scientifically, having the \textsc{inq} code coupled to local-basis models will enable the exploration of research questions relating to the dynamics of localization. The appropriate parameterization of tight-binding models suitable for describing non-adiabatic dynamics remains an open question, and similar questions remain in the propagation of local orbitals, particularly close to metallicity~\cite{Yost2019}. With these tools, we will study how orbital localization arises from decoherence, finite-temperature effects, and scattering processes.  
+Scientifically, having the \textsc{inq} code coupled to local-basis models will enable the exploration of research questions relating to the dynamics of localization. 
+The appropriate parameterization of tight-binding models suitable for describing non-adiabatic dynamics remains an open question, and similar questions remain in the propagation of local orbitals, particularly close to metallicity~\cite{Yost2019}. 
+With these tools, we will study how orbital localization arises from decoherence, finite-temperature effects, and scattering processes.  
 
 \subsection{Science Applications}
+
 \subsubsection{Spin dynamics in layered anti-ferromagnets}
+
 Several ongoing projects involving close collaboration between experimental efforts and theory from this team are in progress.
 
 In collaboration with {\bf Tan} and {\bf Pemmaraju}, {\bf Lindenberg} has been investigating the ultrafast dynamical response of two-dimensional antiferromagnetic materials.
@@ -283,14 +294,14 @@ Given their low-loss, intrinsic THz frequencies, and insensitivity to stray fiel
 Atomically-thin van der Waals crystals like \(\mathrm{FePS_3}\), \(\mathrm{NiPS_3}\) and \(\mathrm{MnPS_3}\) represent a new type of antiferromagnetic materials class with strong 2D quantum confinement and the ability to tune this functionality at high speed and with low energy cost taking advantage of the weak interlayer van der Waals bond.
 In initial work we have carried out time domain THz emission spectroscopy probing the ultrafast dynamics of the magnetization in exfoliated flakes of \(\mathrm{NiPS_3}\).
 In these experiments an ultrafast optical pump pulse excites above band gap at \(400~\mathrm{nm}\) to create free carriers which then couple to the intrinsic magnetization of the material.
-By detecting the emitted THz fields from the sample we probe the time-dependent free (associated with the flow of electrons) and bound (associated with the time-dependent magnetization) currents.  Following directly from Maxwell’s equations one finds: 
+By detecting the emitted THz fields from the sample, we probe the time-dependent free (associated with the flow of electrons) and bound (associated with the time-dependent magnetization) currents.
+Following directly from Maxwell’s equations one finds: 
 
 \begin{equation}
-\mathbf{E}_\text{THz} \propto \frac{\partial\mathbf{J}}{\partial t}+ \frac{\partial}{\partial t} (\nabla \times \mathbf{M})
+\mathbf{E}_\text{THz} \propto \frac{\partial\mathbf{J}}{\partial t} + \frac{\partial}{\partial t} (\nabla \times \mathbf{M})
 \end{equation}
-
 where \(\mathbf{J}\) is the free current and \(\mathbf{M}\) is magnetization. 
-Fig.~1 shows the experimentally measured THz waveform and the peak-to-peak emission amplitude as a function of temperature, showing an enhancement at the Neel temperature.
+Fig.~\ref{fig:NiPS3} shows the experimentally measured THz waveform and the peak-to-peak emission amplitude as a function of temperature, showing an enhancement at the Neel temperature.
 This demonstrates the sensitivity of the measurement to the intrinsic antiferromagnetic dynamics.
 Further, by measuring the polarization state of the emitted THz fields one can extract information about the crystallographic directions of the associated currents.
 We find there are two contributions to the measured fields, involving a current normal to the sample surface associated with the separation of electrons and holes at the surface superposed on a bound current likely associated with an induced rotation of the initially in-plane antiferromagnetic magnetization state.
@@ -299,12 +310,12 @@ This work opens up new possibilities for controlling the properties of antiferro
 Ongoing work additionally involves upcoming experiments at the SLAC National Accelerator Laboratory Ultrafast Electron Diffraction facility where we will in parallel investigate the correlated structural dynamics under similar photoexcitation conditions.
 
 \begin{figure}[ht]
-    \centering\includegraphics[width=1.0\linewidth]{figures/NiPS3}
-    \caption{
-        (left)  Measured THz electric field waveform emitted from NiPS3 antiferromagnetic sample under femtosecond \(400~\mathrm{nm}\) excitation.
-        (right) Peak THz emission amplitude as a function of temperature, showing strong enhancement at the Neel temperature (\(155~\mathrm{K}\)), showing direct sensitivity to time-dependent magnetization.
-    }
-    \label{fig:NiPS3}
+	\centering\includegraphics[width=1.0\linewidth]{figures/NiPS3}
+	\caption{
+		(left)  Measured THz electric field waveform emitted from NiPS3 antiferromagnetic sample under femtosecond \(400~\mathrm{nm}\) excitation.
+		(right) Peak THz emission amplitude as a function of temperature, showing strong enhancement at the Neel temperature (\(155~\mathrm{K}\)), showing direct sensitivity to time-dependent magnetization.
+	}
+	\label{fig:NiPS3}
 \end{figure}
 
 In conjunction with this experimental work, {\bf Tan} and {\bf Pemmaraju} are investigating a number of theoretical approaches to this problem.
