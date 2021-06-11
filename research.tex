@@ -159,7 +159,6 @@ The main limitation to scalability is the lack of a parallel FFT library for GPU
 Our own basic implementation doesn't scale very well. 
 This mean our parallelization only covers one degree of freedom (the states) and not the space (domains). 
 That's why we see the time per iteration in the weak scaling going up in Fig.~\ref{fig:scaling_weak}.
-
 Despite the incomplete parallelization, iterator times are below a second per step even with a few hundred atoms, which is very competitive among alternative codes.
 Overall, we developed a code that scales extremely well in modern clusters with GPUs.
 
