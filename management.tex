@@ -5,13 +5,13 @@ During the first two years of our project, our essential management strategy was
 
 The software development and validation teams held two two-hour meetings per week where {\bf Tadashi Ogitsu (director)} initiated discussions, and the task leads, {\bf Alfredo Correa (software design)}, {\bf Xavier Andrade (GPU adoption)} and {\bf Das Pemmeraju (validation)} formulated a short to mid term strategy towards the initial goal of completing GPU enabled MPI parallel RT-TDDFT software named \textsc{inq}, discussed the progress status, revised strategy if deemed necessary.
 
-Important factors considered in developing the strategy were the status of ever-evolving HPC systems and the needs of the scientific community, while being clearly aware of extent of our development scope for a given amount of resource including potential contribution from the external collaborators on both software development and validation (scientific research). 
+Important factors considered in developing the strategy were the status of ever-evolving HPC systems and needs of the scientific community, while being clearly aware of resource restrictions on our development scope. 
 This practice is crucial for the success of our project due to their tight inter-dependencies, rapid and dramatic change in the hardware architecture of HPC systems, such as dual memory spaces and redundant interconnects introduced by the addition of GPU to CPU, as well as relatively immature current status of RT-TDDFT, where significant number of new methodological and algorithmic developments are being expected. 
 
-Accordingly, we determined that our focus would be on developing and maintaining flexible software consisting of GPU-ready libraries that are commonly used in DFT and TDDFT software so as to provide maximum flexibility in transferability of the software for future DOE leadership class HPC systems, which may have diverse architectural design, while providing a developer friendly software platform to the (TD)DFT community, maximizing external collaborators participation to the software development. 
-This approach is unique in that currently popular ab-initio software developments, such as VASP, Quantum-Espresso, NWChem, focus on providing rather a complete package being developed by small to modest number of major contributors presumably owing to longer history of DFT software development compared to that of TDDFT.
+Accordingly, we focused on developing and maintaining GPU-ready libraries for commonly used DFT and TDDFT routines so as to provide maximum flexibility in transferability of the software for future DOE leadership class HPC systems, which may have diverse architectural design, while providing a developer friendly software platform to the (TD)DFT community, maximizing external collaborators participation to the software development. 
+This approach is unique in that currently popular ab-initio software, such as VASP, Quantum-Espresso, NWChem, focus on providing rather a complete package being developed by small to modest number of major contributors presumably owing to longer history of DFT software development compared to that of TDDFT.
 
-Taking the above into consideration, two staff scientists, {\bf Correa} and {\bf Andrade}, at 0.5~FTE level were dedicated for design and implementation of \textsc{inq}. 
+Two staff scientists, {\bf Correa} and {\bf Andrade}, at 0.5~FTE level were therefore dedicated to the design and implementation of \textsc{inq}. 
 {\bf Correa} has an extensive experience in implementing TDDFT algorithm into Qbox code written by Francois Gygi in C++ computer language and MPI parallelization. 
 In addition, he has been developing a C++ template library named \textsc{multi} for the QMCPACK project.
 Design of \textsc{multi} shares the same philosophy with our project: provide basic libraries that are designed to be used by scientists (not expert programmers), while securing good performance on complex HPC systems such as a CPU+GPU hybrid computer. 
@@ -20,45 +20,43 @@ Design of \textsc{multi} shares the same philosophy with our project: provide ba
 Based on their experiences, {\bf Correa} assumed responsibilities on overall design of the \textsc{inq} library and software development progress, while {\bf Andrade} assumed responsibility on the design and implementation intimately related to GPU optimization. 
 They held nearly daily communication in the earlier stage to develop software design guidelines in order to maximize balance between software programmability, transferability and performance. 
 
-One of the most important aspects of software development is systematic testing. 
-We must ensure that our software produce reliable and reproducible results that are essential for scientific research. 
-{\bf Pemmaraju} (0.1~FTE) together with his PD, Alexey Kertzev (1~PD), who are experts on TDDFT simulations have developed software testing protocols, which means identifying the type of systems, simulations and physical quantities to be compared against the results produced with well established codes such as QE, 
+Systematic testing is crucial for scientific software development, 
+ensuring reliable and reproducible results are produced. 
+{\bf Pemmaraju} (0.1~FTE) together with his PD, Alexey Kertzev (1~PD), who are experts on TDDFT simulations have developed software testing protocols, which means identifying the type of systems, simulations and physical quantities to be compared against well established codes such as QE, 
 \textsc{octopus} and QB@ll. 
-Note that the software testing suites are distributed together with the software in order for the external collaborators to ensure correctness in their platforms.
+Testing suites are distributed together with the software in order for the external collaborators to ensure correctness in their platforms.
 {\bf Pemmeraju} assumed responsibility in designing and performing \textsc{inq} integration tests.
 
 While our \textsc{inq} software was being developed, the experiments ({\bf Aaron Lindenberg (experimental validation)}) and interpretation ({\bf Liang Tan (interpretation)}) team was tasked to perform more elaborate scientific research that would use \textsc{inq} code when it become available. 
-They assumed responsibilities on designing and conducting theory and experiments collaboratively, which would take full advantage of \textsc{inq} code when it become available. Even though experimental work during the pandemic has been limited, recent experimental data collected\ref{sec:2dafm}. \textcolor{red}{(beta-alumina and the new paper?)}. 
+They assumed responsibilities on designing and conducting theory and experiments collaboratively, which would take full advantage of \textsc{inq} code when it become available. Even though experimental work during the pandemic has been limited, we have collected more experimental data recently, which contain new observations that are forming the basis of planned simulations (Sec.~\ref{sec:2dafm}). \textcolor{red}{(beta-alumina and the new paper?)}. 
 {\bf Lindenberg}'s PD, {\bf Xiao (0.5~PD)}, very recently started an assistant Professor position at University of Wisconsin, Madison and are planning to continue the collaboration with us on the subject of ultrafast science.
 
-As the experimental validation team was impacted by the pandemic, {\bf Tan} assumed responsibilities on the other activities that are crucial for our project: develop additional software, tight-binding model for coupled spin-electron-ion dynamics that would extend the time scale and length scale of simulations such that it would augment our software validation effort.
-Initiate external collaborations that would contribute to the software validation and expand the INQ user. 
-He was also engaged in publicizing our project via conference/workshop organizations and presentations with advises and assistance by {\bf David Prendergast (internal advisor)}. 
-The original tight-binding software was developed by his PD, {\bf Sangeeta Rujprohit (1~PD)} when she worked for the Prof. Peter Bl\"{o}chl group. 
-She is currently developing a new version for the 2D layered systems under {\bf Tan}'s supervision, which will be used for more elaborate software validation effort with {\bf Lindenberg} team during the second half of our project.
-The tight-binding model will fully leverage information generated by INQ code. 
-For example, electron-ion coupling parameter in non-perturbative limit can be generated by \textsc{inq} and used in the tight-binding simulation. 
+As the experimental validation team was impacted by the pandemic, {\bf Tan} assumed other crucial responsibilities: the development of software for tight-binding coupled spin-electron-ion dynamics to augment our software validation effort at long time- and length-scales. 
+These developments have led to new scientific questions to be studied with \textsc{inq} (Sec.~\ref{sec:BPVE}), and to external collaborations that would contribute to the software validation and expand the \textsc{inq} user base (Sec.~\ref{sec:collaborative}). 
+The original tight-binding software was developed by  Rajpurohit (1~PD) with Prof. Peter Bl\"{o}chl. 
+She is currently developing a new version for 2D layered systems under {\bf Tan}'s supervision, which will be used for more elaborate software validation effort with {\bf Lindenberg} team during the second half of our project.
+The tight-binding code will fully leverage information generated by \textsc{inq}, such as electron-ion coupling parameters in non-perturbative limit (Sec.\ref{sec:future-tb}). 
+{\bf Tan} and {\bf Prendergast} (internal advisor) publicized our project via conference/workshop organization and presentations. 
 
-In order to facilitate internal and external collaborations, we held all hands meeting approximately every 6 weeks, where we made research planning and completed reporting.
-These meetings were held in person circling LLNL/LBNL/SLAC until early 2020, then switched to online meetings.
+In order to facilitate internal and external collaborations, we held all-hands meetings approximately every 6 weeks, for research planning and reporting.
+These meetings were held in-person at LLNL/LBNL/SLAC until early 2020, then switched to online meetings.
 For the technical discussions for the internal collaboration, we started separate monthly meeting in early 2021, when experimental research became gradually feasible. 
-Regular participants were {\bf Linenberg}, {\bf Xiao}, {\bf Pemmaraju}, {\bf Tan}, {\bf Rujprohit} and {\bf Ogitsu} and the rest of members as necessary.
+Regular participants were {\bf Linenberg}, {\bf Xiao}, {\bf Pemmaraju}, {\bf Tan}, {\bf Rajpurohit} and {\bf Ogitsu} and the rest of members as necessary.
 
-We also invited numerous researchers from HPC and ultrafast science communities. 
-David Richards, who leads the LLNL HPC procurement team gave us great insights on the current and future HPC situation from both hardware and system software perspectives, 
-Prof. Yuan Ping of UC Santa Cruz together with her PhD candidate student gave us lecture on the density matrix based spin dynamics simulation code and its capability. This led to our mutual collaboration on charge carrier decay behavior due to defects in perovskite quantum dots and a publication. 
-Prof. David Strubbe of U.C. Merced gave a seminar on this research subject of application of RT-TDDFT to ultra-strong shock physics, which led to invitation to the 2020 virtual Electronic Structure workshop, where {\bf Ogitsu} briefly introduced NPNEQ project to the participants followed by \textsc{inq} tutorial by {\bf Andrade} and {\bf Correa}. 
-A meeting with Francois Gygi was held in order to exchange information about our respective software development plans (\textsc{inq} and \textsc{Qbox}). 
-We visited Prof. Lin Lin of U.C. Berkeley to learn about the state-of-art time integration scheme and GPU adoption. 
-Prof. Carsten Ullrich of U. Missouri gave a presentation about his new methodological development including a new exchange-correlation kernel for RT-TDDFT. 
+We invited numerous researchers from HPC and ultrafast science communities to these meetings. 
+David Richards (lead of LLNL HPC procurement team) gave us great insights on the current and future HPC situation from hardware and system software perspectives, 
+Prof. Yuan Ping (UCSC) and student presented her density matrix based spin dynamics code, which lead to our mutual collaboration on charge carrier decay at defects in perovskite quantum dots and a publication~\cite{Smart2021}. 
+Prof. David Strubbe (U.C. Merced) gave a seminar on the application of RT-TDDFT to ultra-strong shock physics, which led to invitation to the 2020 Electronic Structure workshop, where {\bf Ogitsu} introduced NPNEQ project to the participants followed by \textsc{inq} tutorial by {\bf Andrade} and {\bf Correa}. 
+A meeting with Francois Gygi was held to exchange information about our respective software development plans (\textsc{inq} and \textsc{Qbox}). 
+We visited Prof. Lin Lin (UC Berkeley) to learn about the state-of-art time integration scheme and GPU adoption. 
+Prof. Carsten Ullrich (U. Missouri) presented methodological developments including a new exchange-correlation kernel for RT-TDDFT. 
 Prof. John Rehr gave a presentation about FEFF project.
 
-International nature of our SAB led to our strategy that SAB will be invited to our meeting one by one resolving scheduling constraint. 
-Prof. Yabana of U. Tsukuba was invited and gave a lecture on his \textsc{salmon} project. 
-We discussed various aspect of software development and distribution. 
-Prof. Emilio Artacho of Cambridge University is scheduled to participate our meeting and discuss about software development and distribution plans of NPNEQ and his project (CECAM's Electronic Structure Library) after the midterm review.
+We have been inviting SAB members one by one to resolve international scheduling constraints. 
+Prof. Yabana (U. Tsukuba)  gave a lecture on his \textsc{salmon} project and discussed various aspects of software development and distribution. 
+Prof. Emilio Artacho (Cambridge) is scheduled to participate in a discussion about software development and distribution plans of NPNEQ and his project (CECAM's Electronic Structure Library) after the midterm review.
 
-The director, {\bf Ogitsu}, oversaw all the activities and communicated with the members assisting redirecting effort, for instance, of the activities impacted by the pandemic at 0.25FTE support level.
+The director, {\bf Ogitsu} (0.25FTE), oversaw all activities and communicated with the members assisting redirecting effort, for instance, of the activities impacted by the pandemic.
 
 {\small\color{red}
 \begin{itemize}
