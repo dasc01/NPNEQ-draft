@@ -1,30 +1,9 @@
 \section{Overview And Executive Summary Of Accomplishment}
 \label{sec:overview}
-{\small
-\begin{itemize}
-    \item \textcolor{red}{2 pages max.}
-    \begin{enumerate}
-        \item \textcolor{red}{Provide a concise introduction to the organization and research being pursued.}
-        \item \textcolor{red}{Briefly sketch the background leading to the 2019 proposal, the gaps in scientific knowledge that the CMS research aims to fill, and the vision and strategic objectives of the project.}
-        \item \textcolor{red}{Include an Executive Summary of the progress made since September 2019 toward
-meeting its strategic objectives, making clear how the accomplishments described in detail in Section 6 below fit together as part of a synergistic research program.}
-    \end{enumerate}
-    \item \textcolor{red}{Review criteria for Scientific and/or Technical Merit of the Proposed Research:}
-    \begin{itemize}
-        \item \textcolor{red}{What new capability/functionality will the proposed software provide to the materials research community? How will the research plan attain the 4-year research and software/data goals?}
-        \item \textcolor{red}{Comment on the novelty and scientific value of the proposed research. }
-        \item \textcolor{red}{How widespread would be the interest in the software within the materials research community?}
-        \item \textcolor{red}{How does the proposed work compare with other efforts in its field, both in terms of scientific and/or technical merit and originality?}
-        \item \textcolor{red}{Comment on the progress and impact for the current award period.}
-    \end{itemize}
 
-\end{itemize}
-}
-
-\clearpage
 
 The development of quantum mechanics in early 20th century lead to paradigm shift in materials science and engineering that were witnessed as, for example, invention of semiconductor devices etc. 
-Emergence of Density Functional Theory (DFT) \cite{HohenbergKohn1964,KohnSham1965} together with breakthrough in algorithmic developments \cite{cooley1965,Cohen1975,Hamann1979,CarParrinello1985,Martin1988,Hamann1989,Vanderbilt1990,Payne1992,Bloechl1994,Klesse1999} and fast growing performance of computers contributed significantly to advancement of the modern electronic structure theory where the state-of-art experiments of the day such as angle resolved photo emission and parameter free DFT band structure calculations helped cross-validating theory and experiments. 
+Emergence of Density Functional Theory (DFT)  together with breakthrough in algorithmic developments \cite{cooley1965,Martin1988} and fast growing performance of computers contributed significantly to advancement of the modern electronic structure theory where the state-of-art experiments of the day such as angle resolved photo emission and parameter free DFT band structure calculations helped cross-validating theory and experiments. 
 Note that DFT's great practicality, reasonable accuracy combined with affordable computational cost, was an important factor though not often credited.
 Those excellent progresses in the 20th century were, however, mostly limited to properties described as the time independent quantum mechanical problems. 
 Towards the end of century, time dependent version of DFT (TDDFT) emerged \cite{RungeGross1984} together with the progress in ultrafast experimental techniques as well as the dramatic advancement in high performance computing (HPC) driven by the architectural transition into massive parallel GPU computing.
@@ -75,15 +54,3 @@ Coordination in those efforts including INQ software development were performed 
 Details on the research and further software development plans, the results of our efforts during the first two years including the one that made a crucial contribution to our future research plans, the tight-binding model for coupled spin-electron-ion quantum dynamics developed by our PD, {\bf Rajuprohit}, under the supervision of {\bf Tan}, software dissemination and outreach plans are described in the next section.
  
 \clearpage
-
-\textcolor{red}{below should be in the next section perhaps}
-
-Understanding the concept of computational intensity is crucial in designing HPC software and hardware. 
-Software with a given algorithm will show a certain ratio of number of floating point operation per machine cycle/number of data copy between memory and register per machine cycle/number of data copy between (MPI) processes per machine cycle, though it may vary slightly depending on some indirect factors.
-By comparing these ratios between a given simulation against that of hardware (floating point operation count, memory bandwidth, interconnect bandwidth), one can understand approximate upper limit of software performance. 
-In order to understand the performance behavior of parallel GPU (TD)DFT software on a few target HPC systems, Ogitsu is currently in communication with Prof. Stanimire Tomov of U. Tennesee, whose team developed GPU ready parallel 3D-FFT library named heFFTe, which is optimized for Summit at ORNL. 
-As it is known, computationally expensive parts of a GGA/LDA level DFT simulation based on planewave pseudopotential algorithm are orthonormalization of wavefunction, 3D-FFT, and non-local pseudopotential. 
-Accordingly, the performance of 3D-FFT often becomes a good predictor of overall performance.
-
-\clearpage
-

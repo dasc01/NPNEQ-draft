@@ -1,60 +1,24 @@
 \section{Description Of Research Tasks, Progress, And Plans}
 \label{sec:research}
 
-{\small\color{red}
-\begin{itemize}
-\item 12 pages max
-    \item Include an Executive Summary of the progress made since September 2019 toward
-meeting its strategic objectives, making clear how the accomplishments described in detail in Section 6 below fit together as part of a synergistic research program.
-\begin{enumerate}
-    \item Specific research objectives associated with each task
-    \item Research progress for each task since the start of the project
-    \item Integration of research activities across tasks
-    \item Research planned for the balance of the award period (through September 2023).
-\end{enumerate}
-\item In the descriptions of the tasks and their integration, the need for a collaborative, synergistic approach involving several investigators should be clearly established. The role and intellectual contribution of each senior investigator should be clear to the reviewer, and the availability of the resources necessary to accomplish the research objectives should be evident. Approximately 70\% of this section should be dedicated to research progress to date and 30\% to planned research.
-    \item \textcolor{red}{Review criteria for Scientific and/or Technical Merit of the Proposed Research:}
-    \begin{itemize}
-        \item \textcolor{red}{What new capability/functionality will the proposed software provide to the materials research community? How will the research plan attain the 4-year research and software/data goals?}
-        \item \textcolor{red}{Comment on the novelty and scientific value of the proposed research. }
-        \item \textcolor{red}{How widespread would be the interest in the software within the materials research community?}
-        \item \textcolor{red}{How does the proposed work compare with other efforts in its field, both in terms of scientific and/or technical merit and originality?}
-        \item \textcolor{red}{Comment on the progress and impact for the current award period.}
-    \end{itemize}
 
-\end{itemize}
-}
-{\color{green}
-Note to ourselves:
-\begin{itemize}
-    \item TB-INQ integration in future: forced oscillation? any idea? Keep in mind: non perturbative aspect is very important.
-    \item k-points and non-orthgonal cell
-    \item User defined operation for external collaborator? How to balance with performance?
-    \item How to expand user base need to be spelled out: Online tutorial by Xavier in late summer, ESW, TMF users meeting (Liang gave us material), SLAC (name?) workshop, US-Africa collaboration (?)
-    \item CCMS to expand collaboration: two summer student from Andre and ? with Alfredo and Kejun from Yuan with Tadashi. Perhaps, get theirs support information and relevant research area to make it more convincing and compelling.
-\end{itemize}
-
-}
-\clearpage
-
-\section{Progress and Accomplishments to date}
+\subsection{Progress and Accomplishments to date}
 
 As outlined above, the primary strategic objective of the NPNEQ CMS center during the first 18 months of the funding period was the development of a \textbf{portable}, \textbf{extensible}, \textbf{scalable} and \textbf{reliable} DFT/RT-TDDFT framework that is fully compatible with existing petascale and near-term exascale~\cite{Kothe2019} \textbf{hybrid CPU-GPU} architectures.
 This objective was achieved with the recent release of \textsc{inq}~\cite{Andrade2021}. 
 In parallel, the team also pursued multi-institutional collaborative research efforts leading to science outcomes in the area of \emph{ultrafast materials science} using alternate tools and methodologies, some of which will be incorporated into the larger INQ ecosystem of codes in the future. 
 In the following we provide a summary of both the software development and scientific research efforts within NPNEQ.
 
-\subsection{Code Development}
+\subsubsection{Code Development}
+\paragraph{The INQ DFT/TDDFT platform}
 
-\subsubsection{The INQ DFT/TDDFT platform} 
 
 With the widespread adoption of Graphical Processing Units (GPUs) as a powerful and energy efficient~\cite{Huang2009} hardware paradigm for scientific computing over the past fifteen years and with the ongoing migration of DOE's national super-computing facilities from CPU to networked hybrid CPU-GPU architectures, it is of paramount importance within computational materials science that the community has access to electronic structure codes that are fully compatible with the emerging GPU computing landscape.
 The INQ platform~\cite{Andrade2021} under development by the NPNEQ team addresses this need within the context of Density Functional Theory (DFT) based approaches to materials simulation while further specializing to nonperturbative simulations of materials under nonequilibrum conditions.
 During the first 18 months of this funding period, the NPNEQ center accomplished the design and development tasks necessary to deliver a modular and extensible GPU-accelerated software solution for DFT/TDDFT led by LLNL PIs \textbf{Andrade} and \textbf{Correa}.
 In the following we outline the unique design features of INQ as well as it's current capabilities:
 
-\paragraph{General features and design:}
-The design philosophy of INQ differs in many important respects from established Fortran/C based DFT/TDDFT codes developed in previous decades to run on CPUs: Unlike the CPU computing model that matured decades ago, GPU computing is still rapidly evolving with different hardware designs competing for primacy in the super-computing space and vendors making significant low-level updates and optimizations on a regular basis.
+\noindent{\bf General features and design:} The design philosophy of INQ differs in many important respects from established Fortran/C based DFT/TDDFT codes developed in previous decades to run on CPUs: Unlike the CPU computing model that matured decades ago, GPU computing is still rapidly evolving with different hardware designs competing for primacy in the super-computing space and vendors making significant low-level updates and optimizations on a regular basis.
 \textsc{Inq} is therefore designed from the outset to be easily modified and improved on top of evolving hardware, while providing consistent results and behavior independent of specific vendor platforms. 
 \textsc{Inq} achieves this goal through abstractions enabled by modern C++ programming, by implementing a clear separation between different classes of software components, namely: application (DFT/TDDFT) specific code, infrastructure (basis-set, boundary conditions, data-structures etc) code and low-level numerical library (blas, FFTs etc) code. 
 \newline 
@@ -105,10 +69,7 @@ The result is a fully functional yet light-weight DFT/TDDFT framework that is po
 \textsc{Inq}'s DFT/TDDFT application layer currently implements semi-local DFT total energies, forces and real-time propagation of the time-dependent KS equations within the adiabatic XC approximations for both molecular and solid-state systems within a periodic supercell framework. 
 In the following, we discuss performance and validation tests of these capabilities within \textsc{inq}. 
 
-\paragraph{GPU-MPI functionality and scaling:}
-%1-1.5 pages including figures
-
-\textsc{Inq} is the first implementation of density functional theory (DFT) and time-dependent DFT (TDDFT) that is written \emph{from scratch} to work on graphical processing units (GPUs).
+\noindent{\bf GPU-MPI functionality and scaling:} \textsc{Inq} is the first implementation of density functional theory (DFT) and time-dependent DFT (TDDFT) that is written \emph{from scratch} to work on graphical processing units (GPUs).
 It proven quite challenging to adapt an existing code to run on the GPU, as extensive modifications to the whole code are needed.
 For this reason we decided to start a new code, designed from the ground up to run on GPUs (but that also runs on CPUs). 
 
@@ -154,8 +115,6 @@ This mean our parallelization only covers one degree of freedom (the states) and
 That's why we see the time per iteration in the weak scaling going up in Fig.~\ref{fig:scaling_weak}.
 Despite the incomplete parallelization, iterator times are below a second per step even with a few hundred atoms, which is very competitive among alternative codes.
 Overall, we developed a code that scales extremely well in modern clusters with GPUs.
-
-\paragraph{Validation of results:}
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=1.0\linewidth]{figures/Results-Fig.pdf}
@@ -174,8 +133,8 @@ Results for ground state total energies and real-time TDDFT optical response are
 	}
 	\label{fig:inq_results}
 \end{figure}
-
-For a new scientific code it is fundamental to produce results that are consistent with other approaches and codes. 
+\newline
+\noindent{\bf Validation of results:} For a new scientific code it is fundamental to produce results that are consistent with other approaches and codes. 
 As \textsc{inq} follows a test-driven development approach, \textsc{inq}'s codebase is continuously tested and validated at multiple levels against analytical results or benchmark data obtained from other established codes such as \textsc{Quantum Espresso}~\cite{Giannozzi2009}. 
 We recently carried out higher level end-to-end tests of \textsc{inq} as a part of the software release validating \textsc{inq} results against corresponding quantities obtained from established plane-wave and realspace grid codes: \textsc{Quantum Espresso} (QE) and \textsc{Octopus}~\cite{Tancogne2020}. 
 For this purpose we chose observables such as molecular bond lengths and crystal lattice parameters based on total-energy minimization, as well as linear optical response from real-time propagation as the relevant quantities to be compared. 
@@ -200,7 +159,7 @@ Furthermore, by interpreting the electron-phonon coupling as low velocity limit 
 To develop this method is important to achieve reliable electronic stopping power in the regime of a tenth to a hundredth of atomic unit of velocity, in a variety of atomistic environments. 
 This is the topic the NPNEQ's publication Ref.~\cite{Quashie2020} where a record low value of ion velocity \(0.04~\mathrm{a.u.}\) is achieved in a non-adiabatic calculation and its relation with the electronic density of state at the Fermi level is established.
 
-\subsubsection{Tight Binding model for nonequilibrium dynamics}\label{sec:tight-binding}
+\paragraph{Tight Binding model for nonequilibrium dynamics}\label{sec:tight-binding}
 
 Within NPNEQ, \emph{ab initio} code development efforts lead by the LLNL and SLAC teams are complemented by efforts at LBNL to develop tight-binding models for non-equilibrium dynamics with the recognition that feedback between qualitative models and quantitative simulations is broadly beneficial for knowledge generation within materials science. 
 In particular, careful model building based on first-principles calculations combined with large-scale model simulations is a promising route to produce interesting insights into the dynamic behavior of  materials driven far from equilibrium. 
@@ -219,9 +178,10 @@ Additionally, the inclusion of external magnetic fields will allow for the simul
 Solving for these spin-waves will be done in large unit cells using an effective spin Hamiltonian consisting of Zeeman effects, exchange interactions and magnetic
 anisotropies. 
 
-\subsection{Collaborative science}\label{sec:collaborative}
+\subsubsection{Collaborative science}
+\label{sec:collaborative}
 
-\subsubsection{Role of nonequilibrium spin-phonon coupling in enhancing bulk photovoltaic effect}\label{sec:BPVE}
+\paragraph{Role of nonequilibrium spin-phonon coupling in enhancing bulk photovoltaic effect}\label{sec:BPVE}
 
 During the project period, our work on the materials system of \(\mathrm{Pr_xCa_{1-x}MnO_3}\) has resulted in the discovery of a new way to enhance the bulk photovoltaic effect by optically induced phase transitions. 
 These results, currently under review, are reported in the preprint Ref.~\cite{Rajpurohit2021}. 
@@ -246,7 +206,7 @@ In this work, {\bf Tan} has supervised photocurrent simulations, {\bf Pemmaraju}
 Follow-up work will utilize the exact-exchange functional features of the \textsc{inq} code to explore the impact of nonlocal exchange on photocurrents in these strongly correlated systems. 
 GPU optimization of the \textsc{inq} code will be used to extend these simulations to the relevant time scales identified above.  
 
-\subsubsection{Effect of surface defects on carrier dynamics in lead halide perovskites}
+\paragraph{Effect of surface defects on carrier dynamics in lead halide perovskites}
 
 High defect tolerance has been considered as a main reason for the long charge carrier lifetime and high photoluminescence quantum yield in bulk lead halide perovskites (LHPs). 
 On the other hand, surface defects play a critical role in determining charge carrier dynamics and optical properties, especially for LHP nanocrystals and quantum dots. Revealing the nature of surface defects and developing strategy for their effective passivation are thus of strong interest. 
@@ -290,7 +250,7 @@ Scalability of the \textsc{inq} code will enable these calculations in challengi
 % \end{figure}
 % \textcolor{red}{Descriptions of selected type-B projects.}
 
-\subsubsection{Ultrafast dynamics in strong-field ionized liquid water} 
+\paragraph{Ultrafast dynamics in strong-field ionized liquid water} 
 
 % \begin{figure}[h]
 % 	\centering
@@ -312,7 +272,7 @@ In the near future we plan to further extend our studies in this prototypical wa
 
 %\subsubsection{WTe2 collaborations}
 
-\subsubsection{Charge density wave melting in 2D materials}
+\paragraph{Charge density wave melting in 2D materials}
 
 In this experimental collaboration~\cite{Siddiqui2020}, we perform the first ultrafast investigation of \(\mathrm{TaTe_2}\), which exhibits unique charge density wave (CDW) and lattice structural order characterised by a transition upon cooling from stripe-like trimer chains into a (\(3\times 3\)) superstructure of trimer clusters. 
 
@@ -322,27 +282,27 @@ These predictions were verified by experimental work utilising MeV-scale ultrafa
 We observe a rapid \(1.4~\mathrm{ps}\) melting of the low-temperature ordered state, followed by recovery of the clusters via thermalization into a hot superstructure persisting for extended times.
 Our work paves the way for further exploration and ultimately directed manipulation of the trimer superstructure for novel applications.
 
-\section{Future Work}
+\subsection{Future Work}
 
-\subsection{Software development}
+\subsubsection{Software development}
 Having validated the modern C++ based design and infrastructural aspects of \textsc{INQ} and demonstrated parallelism over hybrid CPU-GPU architectures, during the next phase of the project we aim to add functionality to the DFT/TDDFT application layer of  \textsc{INQ} with the goal of tackling emerging ultrafast materials science problems. Additionally, to enable low cost simulations of very large system sizes accessible via tight-binding (TB) models, we plan to implement tools for automated extraction of model parameters based on real-time TDDFT simulations. This latter functionality will be developed at LBNL and interfaced with TB codes for dynamics simulations.
 
-\subsubsection{Functionality additions to INQ}
+\paragraph{Functionality additions to INQ}
 
-\paragraph{Beyond adiabatic semi-local XC functionals:}  Recent developments within TDDFT have enabled accurate simulations of excitonic~\cite{Ullrich2014b, Refaely-Abramson2015a, Pemmaraju2018b} and long-range charge transfer phenomena~\cite{Kummel2017} in condensed matter systems within the framework of generalized Kohn-Sham (GKS) TDDFT and current-DFT (CDFT)~\cite{Sun2021}.  GKS theory relaxes the requirement within KS theory that the XC potential be a local multiplicative potential of the form $V_{XC}[n](\textbf{r})$ and instead allows non-local potentials $V_{XC}[\rho](\textbf{r},\textbf{r'} )$ that are often explicit functionals of the GKS one-body density matrix $\rho(\textbf{r},\textbf{r'})$~\cite{Baer2018}. Current-DFT  based approaches meanwhile allow for the  encoding of excitonic effects within a time-dependent XC vector potential $A_{XC}[\textbf{j},n](r,t)$, in principle, a functional of both the density $n(\textbf{r})$ and current-density~$\textbf{j}(\textbf{r})$~\cite{Sun2021}. Both approaches are promising for  modeling excitonic effects in  functional materials such a transition metal oxides, chalcogenides and hybrid perovskite systems at a cost that is significantly lower than solving the Bethe-Salpeter Equation. GKS theory based RT-TDDFT in particular extends to nonlinear and non-perturbative light matter interactions as has been demonstrated recently in the case of pump-probe spectroscopy simulated within excitonic condensed matter systems~\cite{Pemmaraju2020}. One of the main development goals for the NPNEQ team over the next 18 months is therefore to implement beyond semi-local DFT XC functionals within $\textsc{INQ}$.  In this endeavor we will draw on our previous experience implementing hybrid functionals within Quantum Espresso (\textbf{PI Prendergast})~\cite{Barnes2017}, SIESTA (\textbf{PI Pemmaraju})~\cite{Pemmaraju2018b} and Octopus (\textbf{PI Andrade})~\cite{Andrade2015} while exploring the GPU adaptation within \textsc{INQ} of promising new algorithms such as the  Adaptively Compressed Exchange (ACE) low-rank representation of the Fock operator due to Lin et al~\cite{Lin2016}.   
+\noindent{\bf Beyond adiabatic semi-local XC functionals:}  Recent developments within TDDFT have enabled accurate simulations of excitonic~\cite{Ullrich2014b, Refaely-Abramson2015a, Pemmaraju2018b} and long-range charge transfer phenomena~\cite{Kummel2017} in condensed matter systems within the framework of generalized Kohn-Sham (GKS) TDDFT and current-DFT (CDFT)~\cite{Sun2021}.  GKS theory relaxes the requirement within KS theory that the XC potential be a local multiplicative potential of the form $V_{XC}[n](\textbf{r})$ and instead allows non-local potentials $V_{XC}[\rho](\textbf{r},\textbf{r'} )$ that are often explicit functionals of the GKS one-body density matrix $\rho(\textbf{r},\textbf{r'})$~\cite{Baer2018}. Current-DFT  based approaches meanwhile allow for the  encoding of excitonic effects within a time-dependent XC vector potential $A_{XC}[\textbf{j},n](r,t)$, in principle, a functional of both the density $n(\textbf{r})$ and current-density~$\textbf{j}(\textbf{r})$~\cite{Sun2021}. Both approaches are promising for  modeling excitonic effects in  functional materials such a transition metal oxides, chalcogenides and hybrid perovskite systems at a cost that is significantly lower than solving the Bethe-Salpeter Equation. GKS theory based RT-TDDFT in particular extends to nonlinear and non-perturbative light matter interactions as has been demonstrated recently in the case of pump-probe spectroscopy simulated within excitonic condensed matter systems~\cite{Pemmaraju2020}. One of the main development goals for the NPNEQ team over the next 18 months is therefore to implement beyond semi-local DFT XC functionals within $\textsc{INQ}$.  In this endeavor we will draw on our previous experience implementing hybrid functionals within Quantum Espresso (\textbf{PI Prendergast})~\cite{Barnes2017}, SIESTA (\textbf{PI Pemmaraju})~\cite{Pemmaraju2018b} and Octopus (\textbf{PI Andrade})~\cite{Andrade2015} while exploring the GPU adaptation within \textsc{INQ} of promising new algorithms such as the  Adaptively Compressed Exchange (ACE) low-rank representation of the Fock operator due to Lin et al~\cite{Lin2016}.   
 
 
-\paragraph{Non-collinear magnetism and spin-orbit Coupling} Time-dependent DFT for magnetic systems is intrinsically a theory of noncollinear spins wherein the XC magnetic field couples to Pauli two component spinors in the KS Hamiltonian~\cite{Krieger2015}. Furthermore, in the context of modern condensed matter applications such as laser induced magnetization dynamics, carrier dynamics in hybrid perovskite systems and the nonlinear response of topological materials spin-orbit (SO) coupling plays a critical role. We will therefore extend the RT-TDDFT time propagation functionality in \textsc{INQ} to the Breit-Pauli Hamiltonian in the two component spinor algebra~\cite{Breit1932} in order to provide a fully generic description of SO coupling with out projective approximations that depend on ionic positions. In particular we will implement the TDDFT equivalent of the Breit-Pauli Hamiltonian due to Krieger \textit{et al}~\cite{Krieger2015} which enters the time-dependent KS equation
+\noindent{\bf Non-collinear magnetism and spin-orbit Coupling} Time-dependent DFT for magnetic systems is intrinsically a theory of noncollinear spins wherein the XC magnetic field couples to Pauli two component spinors in the KS Hamiltonian~\cite{Krieger2015}. Furthermore, in the context of modern condensed matter applications such as laser induced magnetization dynamics, carrier dynamics in hybrid perovskite systems and the nonlinear response of topological materials spin-orbit (SO) coupling plays a critical role. We will therefore extend the RT-TDDFT time propagation functionality in \textsc{INQ} to the Breit-Pauli Hamiltonian in the two component spinor algebra~\cite{Breit1932} in order to provide a fully generic description of SO coupling with out projective approximations that depend on ionic positions. In particular we will implement the TDDFT equivalent of the Breit-Pauli Hamiltonian due to Krieger \textit{et al}~\cite{Krieger2015} which enters the time-dependent KS equation
 \begin{equation*}
 i\frac{\partial\Psi_i(\textbf{r},t)}{\partial t} = [ \frac{1}{2} ( -i\nabla + \frac{1}{c}\textbf{A}_{ext} (t) )  + v_s(\textbf{r},t)  + \frac{1}{2c} \overrightarrow{\sigma}.\textbf{B}(\textbf{r},t)  + \frac{1}{4c^2}\overrightarrow{\sigma}.(\nabla v_s(\textbf{r},t) \times -i\nabla )] \Psi_i(\textbf{r},t)
 \end{equation*}
 where the last term indicates the SO coupling. The generic formulation we propose to implement is well suited to studying the coupled dynamics of charge-spin-orbital-lattice degrees of freedom in the non-perturbative regime.  
   
 
-\paragraph{Spiral boundary conditions:}
+\noindent{\bf Spiral boundary conditions:}
 Understanding the role of spin-fluctuations both thermal and light driven, is a topic of increasing interest in materials science. With advances in the ability to experimentally probe magnon spectra using inelastic X-ray spectroscopy~\cite{Haverkort2010}, the potential for nonlinear manipulation of spin excitations in the THz regime~\cite{Kampfrath2011} and the emergence of anti-ferromagnetic spintronics~\cite{Baltz2018}, there is a growing demand for \textit{ab initio} theoretical simulations in this area. Describing magnon excitations at finite wave-vectors requires either the use of large supercells or alternatively twisted boundary conditions with the generalized Bloch framework. The latter approach is particularly attractive for time-domain non-perturbative simulations of magnons in periodic systems as has been recently demonstrated~\cite{Tancogne-Dejean2020}. Within the group of PI Lindenberg at SLAC, there is on going and planned experimental activity investigating spin dynamics in layered antiferromagnets as outlined in the next section. In order to make direct contact with these experimental studies we will implement within \textsc{INQ} the time-dependent version of the general Bloch theorem of Sandratskii~\cite{Sandratskii1986} recently outlined by N. Tancogne-Dejean et al~\cite{Tancogne-Dejean2020}. 
 
-\paragraph{Beyond Ehrenfest dynamics}
+\noindent{\bf Beyond Ehrenfest dynamics}
 
 Historically, DFT codes that calculate forces can implement Born-Oppenheimer (BO) molecular dynamics (classical ions).
 Using a similar formulation in TDDFT, not only \textsc{Inq} supports Ehrenfest dynamics (classical ions evolving within excited electrons) but it also offers the perfect framework to implement other forms of non-adiabatic molecular dynamics~\cite{Tapavicza2013,Curchod2018}. 
@@ -354,7 +314,7 @@ This formulation is being tested by not only calculating a certain \emph{limit} 
 
 
 
-\paragraph{Interfacing \textsc{inq} with Tight-Binding codes}\label{sec:future-tb}
+\noindent{\bf Interfacing \textsc{inq} with Tight-Binding codes}\label{sec:future-tb}
 
 We plan to use \textsc{inq} in combination with our tight-binding dynamics code (Section.~\ref{sec:tight-binding}) for parameter extraction and for identification of the relevant degrees of freedom to be retained in these downfolded models. 
 Having a well-defined interface for these tasks will accelerate projects of the sort described in Sections~\ref{sec:BPVE},~\ref{sec:tight-binding}. Dynamical Wannierization along TDDFT trajectories will provide Hamiltonian matrix elements for the construction of these models, generalizing an approach previously taken for Wannierization along classical MD trajectories~\cite{Abramovitch2021}. 
@@ -365,7 +325,7 @@ Scientifically, having the \textsc{inq} code coupled to local-basis models will 
 The appropriate parameterization of tight-binding models suitable for describing non-adiabatic dynamics remains an open question, and similar questions remain in the propagation of local orbitals, particularly close to metallicity~\cite{Yost2019}. 
 With these tools, we will study how orbital localization arises from decoherence, finite-temperature effects, and scattering processes.  
 
-\subsection{Science Applications}
+\subsubsection{Science Applications}
 \begin{figure}[ht]
 	\centering\includegraphics[width=0.8\linewidth]{figures/NiPS3}
 	\caption{
@@ -377,7 +337,7 @@ With these tools, we will study how orbital localization arises from decoherence
 
 Several ongoing projects involving close collaboration between experimental efforts and theory from this team are in progress.
 
-\subsubsection{Spin dynamics in layered antiferromagnets}\label{sec:2dafm}
+\paragraph{Spin dynamics in layered antiferromagnets}\label{sec:2dafm}
 
 In collaboration with {\bf Tan} and {\bf Pemmaraju}, {\bf Lindenberg} has been investigating the ultrafast dynamical response of two-dimensional antiferromagnetic materials.
 In antiferromagnets, electron exchange interactions result in antiparallel or non-collinear microscopic spin correlations with negligible macroscopic magnetization.
@@ -411,7 +371,7 @@ Finally, the RT-TDDFT simulations will provide data for parameterization of a mo
 % Development of this model will be accelerated by the team's recent experience with similar models for 2D TMDCs and manganites~\cite{Siddiqui2020, Rajpurohit2020}. 
 % As a by-product of this work, the \textsc{inq} code will contain an interface that will facilitate user extraction of parameters for model simulations.
 
-\subsubsection{Demagnetization in optically excited perovskite nickelates}
+\paragraph{Demagnetization in optically excited perovskite nickelates}
 
 The perovskite nickelates \(\mathrm{RNiO_3}\) are host to a number of unique structural, electronic and magnetic transitions~\cite{Giovannetti2009,Hampel2017,Beyerlein2018}.
 The melting of the low-temperature antiferromagentic order in photoexcited nickelates~\cite{Caviglia2013} is suggested to be directly linked to the melting of charge order, but the details and control of this coupling are not well understood. 
@@ -421,7 +381,7 @@ Similar to the approach to be taken in Section~\ref{sec:2dafm}, this combination
 Simulation efforts will target the process of charge order melting due to the instantaneous redistribution of charge carriers during photoexcitation process, and the creation of metastable spiral spin structures over \(0.5~\mathrm{ps}\). 
 \textsc{inq} scaling will let us extend these calculations to heterostructures, which are of interest because of possible superconductivity in these structures. These simulations will investigate exchange bias effects at the \(\mathrm{RMnO_3}/\mathrm{RNiO_3}\) interface, the modulation of orbital occupation due to strain and interface effects, and energy transfer across the interface during and after photoexcitation.
 
-\subsubsection{Nonlinear nonequilibrium response in topological materials}
+\paragraph{Nonlinear nonequilibrium response in topological materials}
 
 Nonlinear optical phenomena arise when light at sufficiently high intensities interacts with matter.
 Nonlinear response underlies technologically important physical effects including shift-currents, harmonic generation and frequency upconversion in photovoltaic and optoelectronics applications among others.
