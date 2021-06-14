@@ -21,7 +21,7 @@ Below we outline the unique design features of INQ as well as its current capabi
 
 \noindent{\bf General features and design:} The design philosophy of INQ differs in many important respects from established Fortran/C-based DFT/TDDFT codes developed in past decades to run on CPUs: Unlike the CPU computing model that matured decades ago, GPU computing is still rapidly evolving with different hardware designs competing for primacy in the super-computing space and vendors making significant low-level updates and optimizations on a regular basis.
 \textsc{Inq} is designed from the outset to be easily modified and improved on top of evolving hardware, while providing consistent results and behavior independent of specific vendor platforms. 
-\textsc{Inq} achieves this goal through abstractions enabled by modern C++ programming, by implementing a clear separation between different classes of software components, namely: application (DFT/TDDFT) specific code, infrastructure (basis-set, boundary conditions, data-structures, etc.) code and low-level numerical library (blas, FFTs etc) code. 
+\textsc{Inq} achieves this goal through abstractions enabled by modern C++ programming, by implementing a clear separation between different classes of software components, namely: application (DFT/TDDFT) specific code, infrastructure (basis-set, boundary conditions, data-structures, etc.) code and low-level numerical library (blas, FFTs, etc.) code. 
 \newline 
 \newline
 As shown in Figure~\ref{fig:inq_design}(a), in traditional DFT/TDDFT programs, the different software components are rather tightly coupled into monolithic software units, and the programmer may encounter all classes of code within a given subroutine or function. 
